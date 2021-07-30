@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "name": "Bitcoin",
+    "short": "BTC",
+    "icon": "btc.png",
+    "price": {
+      "January": 35500,
+      "February": 51670,
+      "March": 48600,
+      "April": 57500,
+      "May": 35200,
+      "June": 37400,
+      "July": 32100
+    }
+  },
+  {
+    "id": 2,
+    "name": "Ethereum",
+    "short": "ETH",
+    "icon": "eth.png",
+    "price": {
+      "January": 35500,
+      "February": 51670,
+      "March": 48600,
+      "April": 57500,
+      "May": 35200,
+      "June": 37400,
+      "July": 32100
+    }
+  },
+  {
+    "id": 3,
+    "name": "Cardano",
+    "short": "ADA",
+    "icon": "ada.png",
+    "price": {
+      "January": 1220,
+      "February": 1900,
+      "March": 1790,
+      "April": 2450,
+      "May": 3900,
+      "June": 2370,
+      "July": 1890
+    }
+  },
+  {
+    "id": 4,
+    "name": "Binance Coin",
+    "short": "BNB",
+    "icon": "bnb.png",
+    "price": {
+      "January": 43,
+      "February": 280,
+      "March": 265,
+      "April": 525,
+      "May": 610,
+      "June": 340,
+      "July": 290
+    }
+  },
+  {
+    "id": 5,
+    "name": "Dogecoin",
+    "short": "DOGE",
+    "icon": "doge.png",
+    "price": {
+      "January": 8,
+      "February": 13,
+      "March": 50,
+      "April": 210,
+      "May": 240,
+      "June": 130,
+      "July": 110
+    }
+  },
+  {
+    "id": 6,
+    "name": "Polkadot",
+    "short": "DOT",
+    "icon": "dot.png",
+    "price": {
+      "January": 8,
+      "February": 32,
+      "March": 38,
+      "April": 42,
+      "May": 48,
+      "June": 14,
+      "July": 13
+    }
+  },
+  {
+    "id": 7,
+    "name": "Litecoin",
+    "short": "LTC",
+    "icon": "ltc.png",
+    "price": {
+      "January": 144,
+      "February": 172,
+      "March": 181,
+      "April": 197,
+      "May": 386,
+      "June": 168,
+      "July": 140
+    }
+  },
+  {
+    "id": 8,
+    "name": "Tether",
+    "short": "USDT",
+    "icon": "usdt.png",
+    "price": {
+      "January": 1,
+      "February": 1,
+      "March": 1,
+      "April": 1,
+      "May": 1,
+      "June": 1,
+      "July": 1
+    }
+  },
+  {
+    "id": 9,
+    "name": "XRP",
+    "short": "XRP",
+    "icon": "xrp.png",
+    "price": {
+      "January": 26,
+      "February": 34,
+      "March": 53,
+      "April": 129,
+      "May": 170,
+      "June": 86,
+      "July": 62
+    }
+  }
+]

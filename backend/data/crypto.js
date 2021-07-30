@@ -1,5 +1,6 @@
 const crypto = [
   {
+    id: '1',
     name: 'Bitcoin',
     shortName: 'BTC',
     icon: '/images/icons/btc.png',
@@ -14,6 +15,7 @@ const crypto = [
     },
   },
   {
+    id: '2',
     name: 'Ethereum',
     shortName: 'ETH',
     icon: '/images/icons/eth.png',
@@ -28,6 +30,7 @@ const crypto = [
     },
   },
   {
+    id: '3',
     name: 'Cardano',
     shortName: 'ADA',
     icon: '/images/icons/ada.png',
@@ -42,6 +45,7 @@ const crypto = [
     },
   },
   {
+    id: '4',
     name: 'Binance Coin',
     shortName: 'BNB',
     icon: '/images/icons/bnb.png',
@@ -56,6 +60,7 @@ const crypto = [
     },
   },
   {
+    id: '5',
     name: 'Dogecoin',
     shortName: 'DOGE',
     icon: '/images/icons/doge.png',
@@ -70,6 +75,7 @@ const crypto = [
     },
   },
   {
+    id: '6',
     name: 'Polkadot',
     shortName: 'DOT',
     icon: '/images/icons/dot.png',
@@ -85,6 +91,7 @@ const crypto = [
   },
 
   {
+    id: '7',
     name: 'Litecoin',
     shortName: 'LTC',
     icon: '/images/icons/ltc.png',
@@ -99,6 +106,7 @@ const crypto = [
     },
   },
   {
+    id: '8',
     name: 'Tether',
     shortName: 'USDT',
     icon: '/images/icons/usdt.png',
@@ -113,6 +121,7 @@ const crypto = [
     },
   },
   {
+    id: '9',
     name: 'XRP',
     shortName: 'XRP',
     icon: '/images/icons/xrp.png',

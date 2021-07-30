@@ -1,13 +1,11 @@
 .header-container {
   display: flex;
+  margin: 2rem 1rem;
 }
 
-.header-title {
-  width: 70%;
-}
 .header-nav {
   display: flex;
-  width: 30%;
+  width: 45%;
   justify-content: space-between;
   align-items: center;
 }
@@ -17,4 +15,8 @@
   color: white;
   border-radius: 50px;
   font-size: 13px;
+}
+
+#user-menu {
+  top: 0;
 }
