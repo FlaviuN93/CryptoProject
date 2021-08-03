@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup } from '@material-ui/core';
 import { AccountBalanceWallet, Dashboard } from '@material-ui/icons';
-import './Sidebar.css';
+import './Sidebar.scss';
 import ForumIcon from '@material-ui/icons/Forum';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';

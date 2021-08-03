@@ -21,6 +21,18 @@
     "id": 4,
     "name": "Flaviu Nemes",
     "email": "flaviu@ds.com",
+    "password": 123456
+  },
+  {
+    "id": 5,
+    "name": "Flaviu Nemes",
+    "email": "flaviu@ds.com",
+    "password": "123456"
+  },
+  {
+    "id": 6,
+    "name": "Flaviu Nemes",
+    "email": "flaviu@ds.com",
     "password": "123456"
   }
 ]

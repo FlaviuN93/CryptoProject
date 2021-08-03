@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext } from 'react';
+import './Header.scss';
+import { Link } from 'react-router-dom';
 import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Avatar, Button, Menu, MenuItem } from '@material-ui/core';
-import './Header.css';
 import SearchBar from './SearchBar';
+import { AuthContext } from '../context/data/auth-context';
 const Header = () => {
+  const auth = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(false);
-
   const handleClose = () => setAnchorEl(false);
 
   return (
@@ -20,34 +21,48 @@ const Header = () => {
         </p>
       </div>
       <div className='header-nav'>
-        <SearchBar />
-        <Button>
-          <AppsIcon />
-        </Button>
-        <Button size='small' startIcon={<NotificationsIcon />} id='header-btn'>
-          15
-        </Button>
+        {auth.isLoggedIn && (
+          <>
+            <SearchBar />
+            <Button>
+              <AppsIcon />
+            </Button>
+            <Button
+              size='small'
+              startIcon={<NotificationsIcon />}
+              id='header-btn'
+            >
+              15
+            </Button>
+            <Button
+              endIcon={<ExpandMoreIcon />}
+              onClick={() => setAnchorEl(true)}
+            >
+              <Avatar alt='name' src='' /> <hr /> Name{' '}
+            </Button>
+            <Menu
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: 'center',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 285,
+                horizontal: 145,
+              }}
+              open={anchorEl}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>Wallet</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+          </>
+        )}
 
-        <Button endIcon={<ExpandMoreIcon />} onClick={() => setAnchorEl(true)}>
-          <Avatar alt='name' src='' /> <hr /> Name{' '}
+        <Button component={Link} to='/login'>
+          Authenticate
         </Button>
-        <Menu
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: 'center',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 285,
-            horizontal: 145,
-          }}
-          open={anchorEl}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>Wallet</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
       </div>
     </div>
   );

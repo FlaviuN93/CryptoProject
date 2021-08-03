@@ -1,6 +1,0 @@
-.overview_layout {
-  display: grid;
-  grid-template-columns: minmax(180px, 15%) 1fr;
-  grid-template-rows: repeat(auto, 150px);
-  height: 100vh;
-}
