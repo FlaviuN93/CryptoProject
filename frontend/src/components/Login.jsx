@@ -1,74 +1,93 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import './Login.scss';
-import { AuthContext } from '../context/data/auth-context';
-import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../context/data/user.context';
+import FormInput from './FormInput';
+import ErrorModal from './ErrorModal';
+
+import LoadingSpinner from './LoadingSpinner';
+import { useHttpClient } from '../shared/http-hook';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
-  const auth = useContext(AuthContext);
+  const { error, isLoading, sendRequest } = useHttpClient();
 
-  const handleSubmit = (event) => {
-    console.log(event);
+  const auth = useContext(UserContext);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    auth.login();
-    history.push('/');
-  };
+    try {
+      await sendRequest(
+        'http://localhost:5000/api/v1/users/login',
+        'POST',
+        JSON.stringify({ email, password }),
+        { 'Content-Type': 'application/json' }
+      );
 
-  const handleChange = (event) => {};
+      auth.login();
+    } catch (err) {}
+  };
 
   return (
     <>
-      <h1 style={{ color: '#001E6C', textAlign: 'center', marginTop: '20px' }}>
-        Fortech
-        <span style={{ color: 'red', fontSize: 28 }}>.</span>
-      </h1>
-      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <h3 style={{ color: '#4C4C66' }}>If you do not have an account</h3>
-        <span style={{ color: '#6F6C99', fontWeight: '500' }}>
-          Register with your email and password
-        </span>
-      </div>
-      <form className='register-form' onSubmit={handleSubmit}>
-        <div className='container'>
-          <div>
-            <label htmlFor='email' className='form-input-label'></label>
-            <input
-              className='form-input'
-              type='email'
-              name='email'
-              onChange={handleChange}
-              required
-              id='email'
-              placeholder='Email'
-            />
-          </div>
-          <div>
-            <label htmlFor='password' className='form-input-label'></label>
-            <input
-              type='password'
-              name='password'
-              id='password'
-              onChange={handleChange}
-              required
-              minLength='6'
-              maxLength='30'
-              placeholder='Password'
-              className='form-input'
-            />
-          </div>
-          <Button
-            variant='contained'
-            type='submit'
-            size='large'
-            color='primary'
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {error ? <ErrorModal error={error} /> : null}{' '}
+          <h1
+            style={{
+              color: '#001E6C',
+              textAlign: 'center',
+              marginTop: '50px',
+            }}
           >
-            Submit
-          </Button>
-        </div>
-      </form>
+            Fortech
+            <span style={{ color: 'red', fontSize: 28 }}>.</span>
+          </h1>
+          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <h3 style={{ color: '#4C4C66' }}>If you do not have an account</h3>
+            <span style={{ color: '#6F6C99', fontWeight: '500' }}>
+              Press <Link to='/register'>here</Link> to register
+            </span>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className='auth-container'>
+              <div>
+                <FormInput
+                  type='email'
+                  name='email'
+                  label='Email'
+                  value={email}
+                  handleChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <FormInput
+                  type='password'
+                  name='password'
+                  label='Password'
+                  value={password}
+                  handleChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength='6'
+                  maxLength='30'
+                />
+              </div>
+              <Button
+                variant='contained'
+                type='submit'
+                style={{ width: '250px', height: '40px' }}
+                color='primary'
+              >
+                Log in
+              </Button>
+            </div>
+          </form>
+        </>
+      )}
     </>
   );
 };

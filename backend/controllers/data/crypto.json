@@ -3,135 +3,135 @@
     "id": 1,
     "name": "Bitcoin",
     "short": "BTC",
-    "icon": "btc.png",
+    "icon": "/images/icons/btc.png",
     "price": {
-      "January": 35500,
-      "February": 51670,
-      "March": 48600,
-      "April": 57500,
-      "May": 35200,
-      "June": 37400,
-      "July": 32100
+      "january": 35500,
+      "february": 51670,
+      "march": 48600,
+      "april": 57500,
+      "may": 35200,
+      "june": 37400,
+      "july": 32100
     }
   },
   {
     "id": 2,
     "name": "Ethereum",
     "short": "ETH",
-    "icon": "eth.png",
+    "icon": "/images/icons/eth.png",
     "price": {
-      "January": 35500,
-      "February": 51670,
-      "March": 48600,
-      "April": 57500,
-      "May": 35200,
-      "June": 37400,
-      "July": 32100
+      "january": 1400,
+      "february": 1623,
+      "march": 3210,
+      "april": 4010,
+      "may": 2990,
+      "june": 2620,
+      "july": 2476
     }
   },
   {
     "id": 3,
     "name": "Cardano",
     "short": "ADA",
-    "icon": "ada.png",
+    "icon": "/images/icons/ada.png",
     "price": {
-      "January": 1220,
-      "February": 1900,
-      "March": 1790,
-      "April": 2450,
-      "May": 3900,
-      "June": 2370,
-      "July": 1890
+      "january": 1220,
+      "february": 1900,
+      "march": 1790,
+      "april": 2450,
+      "may": 3900,
+      "june": 2370,
+      "july": 1890
     }
   },
   {
     "id": 4,
     "name": "Binance Coin",
     "short": "BNB",
-    "icon": "bnb.png",
+    "icon": "/images/icons/bnb.png",
     "price": {
-      "January": 43,
-      "February": 280,
-      "March": 265,
-      "April": 525,
-      "May": 610,
-      "June": 340,
-      "July": 290
+      "january": 43,
+      "february": 280,
+      "march": 265,
+      "april": 525,
+      "may": 610,
+      "june": 340,
+      "july": 290
     }
   },
   {
     "id": 5,
     "name": "Dogecoin",
     "short": "DOGE",
-    "icon": "doge.png",
+    "icon": "/images/icons/doge.png",
     "price": {
-      "January": 8,
-      "February": 13,
-      "March": 50,
-      "April": 210,
-      "May": 240,
-      "June": 130,
-      "July": 110
+      "january": 8,
+      "february": 13,
+      "march": 50,
+      "april": 210,
+      "may": 240,
+      "june": 130,
+      "july": 110
     }
   },
   {
     "id": 6,
     "name": "Polkadot",
     "short": "DOT",
-    "icon": "dot.png",
+    "icon": "/images/icons/dot.png",
     "price": {
-      "January": 8,
-      "February": 32,
-      "March": 38,
-      "April": 42,
-      "May": 48,
-      "June": 14,
-      "July": 13
+      "january": 8,
+      "february": 32,
+      "march": 38,
+      "april": 42,
+      "may": 48,
+      "june": 14,
+      "july": 13
     }
   },
   {
     "id": 7,
     "name": "Litecoin",
     "short": "LTC",
-    "icon": "ltc.png",
+    "icon": "/images/icons/ltc.png",
     "price": {
-      "January": 144,
-      "February": 172,
-      "March": 181,
-      "April": 197,
-      "May": 386,
-      "June": 168,
-      "July": 140
+      "january": 144,
+      "february": 172,
+      "march": 181,
+      "april": 197,
+      "may": 386,
+      "june": 168,
+      "july": 140
     }
   },
   {
     "id": 8,
     "name": "Tether",
     "short": "USDT",
-    "icon": "usdt.png",
+    "icon": "/images/icons/usdt.png",
     "price": {
-      "January": 1,
-      "February": 1,
-      "March": 1,
-      "April": 1,
-      "May": 1,
-      "June": 1,
-      "July": 1
+      "january": 1,
+      "february": 1,
+      "march": 1,
+      "april": 1,
+      "may": 1,
+      "june": 1,
+      "july": 1
     }
   },
   {
     "id": 9,
     "name": "XRP",
     "short": "XRP",
-    "icon": "xrp.png",
+    "icon": "/images/icons/xrp.png",
     "price": {
-      "January": 26,
-      "February": 34,
-      "March": 53,
-      "April": 129,
-      "May": 170,
-      "June": 86,
-      "July": 62
+      "january": 26,
+      "february": 34,
+      "march": 53,
+      "april": 129,
+      "may": 170,
+      "june": 86,
+      "july": 62
     }
   }
 ]

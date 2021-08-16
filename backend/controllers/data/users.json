@@ -2,37 +2,40 @@
   {
     "id": 1,
     "name": "Admin User",
-    "email": "admin@test2.com",
-    "password": 12345
+    "email": "admin@user.com",
+    "password": "12345"
   },
   {
     "id": 2,
     "name": "John Doe",
     "email": "john@doe.com",
-    "password": 1234567890
+    "password": "1234567890"
   },
   {
     "id": 3,
     "name": "Jane Doe",
     "email": "jane@doe.com",
-    "password": 123456789
+    "password": "123456789"
   },
   {
     "id": 4,
-    "name": "Flaviu Nemes",
-    "email": "flaviu@ds.com",
-    "password": 123456
+    "name": "FlaviuN93",
+    "email": "dfsadsa@dsd.com",
+    "password": "123456"
   },
   {
     "id": 5,
-    "name": "Flaviu Nemes",
-    "email": "flaviu@ds.com",
+    "name": "FlaviuN93",
+    "email": "dfsadsa@ds2d.com",
     "password": "123456"
   },
   {
     "id": 6,
-    "name": "Flaviu Nemes",
-    "email": "flaviu@ds.com",
+    "name": "FlaviuN93",
+    "email": "dsad@dsd.com",
     "password": "123456"
-  }
+  },
+  { "id": 7, "name": "dsaddsa", "email": "dsa@dsds.com", "password": "123456" },
+  { "id": 8, "name": "Fdasdsa", "email": "bgdf@dsd.com", "password": "123456" },
+  { "id": 9, "name": "sdasd", "email": "dsada@ds.com", "password": "123456" }
 ]

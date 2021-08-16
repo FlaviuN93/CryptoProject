@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import './LineChart.scss';
 
-const LineChart = () => {
+const LineChart = (props) => {
   return (
     <div className='line-chart'>
       <Line

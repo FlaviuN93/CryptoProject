@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { trends } = require('../utils/cryptoFunctions');
 
 const cryptos = JSON.parse(fs.readFileSync(`${__dirname}/data/crypto.json`));
 
@@ -12,21 +13,20 @@ exports.getAllCrypto = (req, res) => {
   });
 };
 
-exports.getCryptoById = (req, res) => {
-  const id = req.params.id * 1;
-  const crypto = cryptos.find((crypto) => crypto.id === id);
-
-  if (id > cryptos.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'invalid id',
-    });
-  }
+exports.getCryptoByName = (req, res) => {
+  const data = req.body;
+  let selectedCrypto = [];
+  data.map((name) => {
+    const foundValue = cryptos.find((crypto) => crypto.name === name);
+    selectedCrypto.push(foundValue);
+    return selectedCrypto;
+  });
+  selectedCrypto.map((crypto) => console.log(crypto.price));
 
   res.status(200).json({
     status: 'success',
     data: {
-      crypto,
+      selectedCrypto,
     },
   });
 };

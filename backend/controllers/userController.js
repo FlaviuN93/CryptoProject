@@ -2,6 +2,70 @@ const fs = require('fs');
 
 const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`));
 
+exports.login = (req, res) => {
+  const { email, password } = req.body;
+
+  const identifiedUser = users.find((user) => user.email === email);
+
+  if (!identifiedUser || identifiedUser.password !== password) {
+    return res.status(401).json({
+      status: 'Fail',
+      message: 'Invalid Credentials',
+    });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: identifiedUser,
+    },
+  });
+};
+
+exports.signup = (req, res) => {
+  const { name, email, password, confirmPassword } = req.body;
+  const hasUser = users.find((user) => user.email === email);
+
+  if (hasUser) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'Could not create user. Email already exists',
+    });
+  }
+  if (password !== confirmPassword) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'Invalid passwords',
+    });
+  }
+  const newId = users[users.length - 1].id + 1;
+
+  const createUser = {
+    id: newId,
+    name: name,
+    email: email,
+    password: password,
+  };
+
+  const newUser = Object.assign(createUser);
+
+  users.push(newUser);
+
+  fs.writeFile(
+    `${__dirname}/data/users.json`,
+    JSON.stringify(users),
+    (err) => {}
+  );
+  res.status(201).json({
+    status: 'success',
+    data: {
+      user: newUser,
+    },
+  });
+};
+
+//////////////////////////////////////////////////////////////////////////////
+
 exports.getAllUsers = (req, res) => {
   res.status(200).json({
     status: 'success',

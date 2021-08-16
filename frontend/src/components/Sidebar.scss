@@ -21,25 +21,22 @@
   }
 }
 
-.btn-container {
+.sidebar-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 
-  & .sidebar-btn {
-    border: none;
-    width: 100%;
+  & .sidebar-item {
+    align-self: center;
     height: 4rem;
-    display: flex;
     color: #6f6c99;
   }
 
-  & .sidebar-btn p {
-    width: 75%;
+  & .sidebar-item:hover {
+    color: #53b9ea;
   }
 
-  & .sidebar-btn:active,
-  & .sidebar-btn:hover {
+  .Mui-selected {
     color: #53b9ea;
   }
 }

@@ -5,8 +5,13 @@ import SearchIcon from '@material-ui/icons/Search';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    alignItems: 'center',
-    width: 200,
+    width: '220px',
+    [theme.breakpoints.down('md')]: {
+      width: '180px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '150px',
+    },
   },
   input: {
     marginLeft: theme.spacing(1),

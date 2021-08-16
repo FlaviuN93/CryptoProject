@@ -1,0 +1,29 @@
+.currency-card {
+  border: 1px solid #e2e2e8;
+  height: 5.5rem;
+  width: 11rem;
+  display: inline-flex;
+  margin-right: 20px;
+  cursor: pointer;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+
+  @media only screen and (max-width: '64em') {
+  }
+
+  &__grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .currency-short {
+    color: #4c4c66;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0;
+  }
+}

@@ -1,0 +1,37 @@
+.group {
+  position: relative;
+  .form-input {
+    width: 250px;
+    height: 45px;
+    margin: 25px;
+    border-radius: 0;
+    color: rgba(black, $alpha: 0.8);
+    border: none;
+    border-bottom: 1px solid grey;
+    font-weight: 500;
+    font-size: 16px;
+
+    &:focus ~ .form-input-label {
+      top: -8px;
+      font-size: 14px;
+      color: black;
+      font-weight: 500;
+    }
+  }
+
+  .form-input-label {
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.4s ease top;
+  }
+
+  .shrink {
+    top: -8px;
+    font-size: 14px;
+    color: black;
+    font-weight: 500;
+  }
+}

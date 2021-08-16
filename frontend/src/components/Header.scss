@@ -1,10 +1,20 @@
 .header-container {
   display: flex;
-  margin: 2rem 1rem;
+  width: 100%;
+  margin: 2rem 0;
+  align-items: center;
+
+  .header-dashboard {
+    width: 50%;
+
+    @media only screen and (max-width: 60em) {
+      width: 40%;
+    }
+  }
 
   .header-nav {
     display: flex;
-    width: 45%;
+    width: 65%;
     justify-content: space-between;
     align-items: center;
   }
@@ -12,7 +22,21 @@
   #header-btn {
     background: linear-gradient(180deg, #ff409a, #c438ef);
     color: white;
-    border-radius: 50px;
-    font-size: 13px;
+    border-radius: 30px;
+  }
+
+  .nav-list {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    @media only screen and (max-width: 75em) {
+      width: 55%;
+    }
+
+    @media only screen and (max-width: 60em) {
+      width: 60%;
+    }
   }
 }

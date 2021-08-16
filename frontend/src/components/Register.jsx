@@ -1,106 +1,137 @@
 import { Button } from '@material-ui/core';
-import React, { useState } from 'react';
 
-import './Register.scss';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ErrorModal from './ErrorModal';
+import FormInput from './FormInput';
+import LoadingSpinner from './LoadingSpinner';
+import { useHttpClient } from '../shared/http-hook';
+import { UserContext } from '../context/data/user.context';
 
 const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const handleSubmit = (event) => {
+  const [userCredentials, setUserCredentials] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const { name, email, password, confirmPassword } = userCredentials;
+  const auth = useContext(UserContext);
+  const { error, isLoading, sendRequest } = useHttpClient();
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  };
+    try {
+      await sendRequest(
+        'http://localhost:5000/api/v1/users/signup',
+        'POST',
+        JSON.stringify({ name, email, password, confirmPassword }),
+        { 'Content-Type': 'application/json' }
+      );
 
-  const handleChange = (event) => {};
+      auth.login();
+    } catch (err) {}
+  };
 
   return (
     <>
-      <h1 style={{ color: '#001E6C', textAlign: 'center', marginTop: '20px' }}>
-        Fortech
-        <span style={{ color: 'red', fontSize: 28 }}>.</span>
-      </h1>
-      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <h3 style={{ color: '#4C4C66' }}>If you do not have an account</h3>
-        <span style={{ color: '#6F6C99', fontWeight: '500' }}>
-          Register with your email and password
-        </span>
-      </div>
-      <form className='register-form' onSubmit={handleSubmit}>
-        <div className='container'>
-          <div>
-            <label htmlFor='name' className='form-input-label'></label>
-            <input
-              className='form-input'
-              type='text'
-              name='username'
-              id='name'
-              onChange={handleChange}
-              required
-              placeholder='Username'
-              pattern='^[a-zA-Z0-9]{4,10}$'
-              maxLength='20'
-              title='No special characters. e.g. @!$%'
-            />
-          </div>
-          <div>
-            <label htmlFor='email' className='form-input-label'></label>
-            <input
-              className='form-input'
-              type='email'
-              name='email'
-              onChange={handleChange}
-              required
-              id='email'
-              placeholder='Email'
-            />
-          </div>
-          <div>
-            <label htmlFor='password' className='form-input-label'></label>
-            <input
-              type='password'
-              name='password'
-              id='password'
-              onChange={handleChange}
-              required
-              minLength='6'
-              maxLength='30'
-              placeholder='Password'
-              className='form-input'
-            />
-          </div>
-          <div>
-            <label
-              htmlFor='confirmPassword'
-              className='form-input-label'
-            ></label>
-            <input
-              type='password'
-              name='confirmPassword'
-              id='confirmPassword'
-              onChange={handleChange}
-              required
-              minLength='6'
-              maxLength='30'
-              placeholder='Confirm Password'
-              className='form-input'
-            />
-          </div>
-          <Button
-            variant='contained'
-            type='submit'
-            size='large'
-            color='primary'
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {error ? <ErrorModal error={error} /> : null}
+          <h1
+            style={{ color: '#001E6C', textAlign: 'center', marginTop: '30px' }}
           >
-            Submit
-          </Button>
-        </div>
-      </form>
+            Fortech
+            <span style={{ color: 'red', fontSize: 28 }}>.</span>
+          </h1>
+          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+            <h3 style={{ color: '#4C4C66' }}>If you have an account</h3>
+            <span style={{ color: '#6F6C99', fontWeight: '500' }}>
+              Press <Link to='/login'>here</Link> to login
+            </span>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className='auth-container'>
+              <div>
+                <FormInput
+                  type='text'
+                  name='username'
+                  value={name}
+                  handleChange={(e) =>
+                    setUserCredentials({
+                      ...userCredentials,
+                      name: e.target.value,
+                    })
+                  }
+                  label='Username'
+                  required
+                  pattern='^[a-zA-Z0-9]{4,10}$'
+                  maxLength='20'
+                  title='No special characters. e.g. @!$%'
+                />
+              </div>
+              <div>
+                <FormInput
+                  type='email'
+                  name='email'
+                  label='Email'
+                  value={email}
+                  handleChange={(e) =>
+                    setUserCredentials({
+                      ...userCredentials,
+                      email: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+              <div>
+                <FormInput
+                  type='password'
+                  name='password'
+                  label='Password'
+                  value={password}
+                  handleChange={(e) =>
+                    setUserCredentials({
+                      ...userCredentials,
+                      password: e.target.value,
+                    })
+                  }
+                  required
+                  minLength='6'
+                  maxLength='30'
+                />
+              </div>
+              <div>
+                <FormInput
+                  type='password'
+                  name='confirmPassword'
+                  value={confirmPassword}
+                  handleChange={(e) =>
+                    setUserCredentials({
+                      ...userCredentials,
+                      confirmPassword: e.target.value,
+                    })
+                  }
+                  label='Confirm Password'
+                  required
+                  minLength='6'
+                  maxLength='30'
+                />
+              </div>
+              <Button
+                variant='contained'
+                type='submit'
+                style={{ width: '250px', height: '40px' }}
+                color='primary'
+              >
+                Register
+              </Button>
+            </div>
+          </form>{' '}
+        </>
+      )}
     </>
   );
 };

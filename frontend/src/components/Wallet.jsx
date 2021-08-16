@@ -1,12 +1,6 @@
 import React from 'react';
-import CurrencyList from './CurrencyList';
-
 const Wallet = () => {
-  return (
-    <div>
-      <CurrencyList />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Wallet;
