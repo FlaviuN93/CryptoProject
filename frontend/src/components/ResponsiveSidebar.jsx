@@ -52,7 +52,7 @@ const ResponsiveSidebar = () => {
           defaultSelectedKeys={['1']}
           mode='inline'
           inlineCollapsed={!collapsed}
-          style={{ height: '80vh' }}
+          style={{ height: '100vh' }}
         >
           <Menu.Item
             className={classes.sidebarItem}

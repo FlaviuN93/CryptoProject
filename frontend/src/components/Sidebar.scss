@@ -30,6 +30,15 @@
     align-self: center;
     height: 4rem;
     color: #6f6c99;
+    position: relative;
+
+    &-dot {
+      color: #ff40a5;
+      font-size: 50px;
+      position: absolute;
+      top: -22px;
+      right: 10px;
+    }
   }
 
   & .sidebar-item:hover {

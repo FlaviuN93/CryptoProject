@@ -1,21 +1,43 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './Header.scss';
 import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {
-  Avatar,
-  Button,
-  Menu,
-  MenuItem,
-  useMediaQuery,
-} from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Avatar, Button, useMediaQuery } from '@material-ui/core';
 import SearchBar from './SearchBar';
+import { UserContext } from '../providers/user.provider';
+import { Dropdown, Menu } from 'antd';
+import { Link } from 'react-router-dom';
+
 const Header = () => {
-  const [anchorEl, setAnchorEl] = useState(false);
-  const handleClose = () => setAnchorEl(false);
   const isLargePhone = useMediaQuery('(max-width:54em)');
   const isPhone = useMediaQuery('(max-width:43.75em)');
+  const { userInfo, isLoggedIn, logout } = useContext(UserContext);
+  const { user } = userInfo;
+
+  const menu = (
+    <Menu>
+      <Menu.Item key='1' icon={<AccountCircleIcon />}>
+        <Link to='/'>Profile</Link>
+      </Menu.Item>
+      {isPhone ? (
+        <Menu.Item key='2' icon={<NotificationsIcon />}>
+          <Link to='/'>Notifications</Link>
+        </Menu.Item>
+      ) : null}
+      <Menu.Item key='3' icon={<AccountBalanceWalletIcon />}>
+        <Link to='/'>Wallet</Link>
+      </Menu.Item>{' '}
+      <Menu.Item key='4' icon={<ExitToAppIcon />}>
+        <Link to='/login' onClick={logout}>
+          Logout
+        </Link>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div className='header-container'>
@@ -35,57 +57,46 @@ const Header = () => {
         <div>
           <SearchBar />
         </div>
+
         <div className='nav-list'>
-          <Button>
-            <AppsIcon style={{ height: '1.8rem', width: '2rem' }} />
-          </Button>
-
-          {isPhone ? null : (
-            <Button
-              style={{ width: '4rem', height: '2.2rem' }}
-              startIcon={<NotificationsIcon style={{ height: '1.2rem' }} />}
-              id='header-btn'
-            >
-              15
-            </Button>
+          {isLoggedIn ? (
+            <>
+              <Button>
+                <AppsIcon style={{ height: '1.8rem', width: '2rem' }} />
+              </Button>
+              {isPhone ? null : (
+                <Button
+                  style={{ width: '4rem', height: '2.2rem' }}
+                  startIcon={<NotificationsIcon style={{ height: '1.2rem' }} />}
+                  id='header-btn'
+                >
+                  15
+                </Button>
+              )}
+              <Dropdown overlay={menu} placement='topRight' trigger={['click']}>
+                <Button>
+                  {' '}
+                  <Avatar alt='name' src='' style={{ marginRight: '5px' }} />
+                  {isLargePhone ? null : (
+                    <span style={{ color: 'black' }}>{user.name}</span>
+                  )}
+                  <ExpandMoreIcon
+                    style={{ color: '#6F6C99', fontSize: '28px' }}
+                  />
+                </Button>
+              </Dropdown>
+            </>
+          ) : (
+            <>
+              <Link to='/register'>
+                <Button>Authenticate</Button>
+              </Link>{' '}
+              <Link to='/about-us'>
+                <Button>About Us</Button>
+              </Link>
+            </>
           )}
-          <Button
-            endIcon={<ExpandMoreIcon />}
-            onClick={() => setAnchorEl(true)}
-            style={{ letterSpacing: '.75px' }}
-          >
-            <Avatar alt='name' src='' />
-            {isLargePhone ? null : (
-              <>
-                <hr style={{ marginLeft: '5px' }} /> <span>Flaviu</span>
-              </>
-            )}
-          </Button>
-          <Menu
-            getContentAnchorEl={null}
-            anchorOrigin={{
-              vertical: 'center',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 285,
-              horizontal: 145,
-            }}
-            open={anchorEl}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            {isPhone ? (
-              <MenuItem onClick={handleClose}>Notifications</MenuItem>
-            ) : null}
-            <MenuItem onClick={handleClose}>Wallet</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
-          </Menu>
         </div>
-
-        {/* <Button component={Link} to='/register'>
-          Authenticate
-        </Button> */}
       </div>
     </div>
   );

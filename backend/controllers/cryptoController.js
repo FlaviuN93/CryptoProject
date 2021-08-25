@@ -14,6 +14,7 @@ exports.getAllCrypto = (req, res) => {
 };
 
 exports.getCryptoByName = (req, res) => {
+  console.log(req.body);
   const data = req.body;
   let selectedCrypto = [];
   data.map((name) => {
@@ -21,7 +22,6 @@ exports.getCryptoByName = (req, res) => {
     selectedCrypto.push(foundValue);
     return selectedCrypto;
   });
-  selectedCrypto.map((crypto) => console.log(crypto.price));
 
   res.status(200).json({
     status: 'success',

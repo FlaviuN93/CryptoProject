@@ -34,6 +34,9 @@ const Sidebar = () => {
             >
               <Dashboard style={{ marginRight: '6px' }} />
               Dashboard
+              {selectedIndex === 0 ? (
+                <span className='sidebar-item-dot'>.</span>
+              ) : null}
             </ListItem>
           </Link>
           <Link to='/'>
@@ -44,6 +47,9 @@ const Sidebar = () => {
             >
               <AccountBalanceWallet style={{ marginRight: '6px' }} />
               Wallet
+              {selectedIndex === 1 ? (
+                <span className='sidebar-item-dot'>.</span>
+              ) : null}
             </ListItem>
           </Link>{' '}
           <Link to='/'>
@@ -54,6 +60,9 @@ const Sidebar = () => {
             >
               <ForumIcon style={{ marginRight: '6px' }} />
               Messages
+              {selectedIndex === 2 ? (
+                <span className='sidebar-item-dot'>.</span>
+              ) : null}
             </ListItem>{' '}
           </Link>{' '}
           <Link to='/'>
@@ -64,6 +73,9 @@ const Sidebar = () => {
             >
               <ImportExportIcon style={{ marginRight: '6px' }} />
               Trade
+              {selectedIndex === 3 ? (
+                <span className='sidebar-item-dot'>.</span>
+              ) : null}
             </ListItem>
           </Link>{' '}
           <Link to='/'>
@@ -74,6 +86,9 @@ const Sidebar = () => {
             >
               <AccountCircleIcon style={{ marginRight: '6px' }} /> Account
               Setting
+              {selectedIndex === 4 ? (
+                <span className='sidebar-item-dot'>.</span>
+              ) : null}
             </ListItem>
           </Link>
         </div>

@@ -1,13 +1,11 @@
 import { Button } from '@material-ui/core';
 
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../providers/user.provider';
 import ErrorModal from './ErrorModal';
 import FormInput from './FormInput';
 import LoadingSpinner from './LoadingSpinner';
-import { useHttpClient } from '../shared/http-hook';
-import { UserContext } from '../context/data/user.context';
-
 const Register = () => {
   const [userCredentials, setUserCredentials] = useState({
     name: '',
@@ -15,20 +13,15 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
-  const { name, email, password, confirmPassword } = userCredentials;
-  const auth = useContext(UserContext);
-  const { error, isLoading, sendRequest } = useHttpClient();
+  const history = useHistory();
+
+  const { isLoading, error, signupRequest } = useContext(UserContext);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await sendRequest(
-        'http://localhost:5000/api/v1/users/signup',
-        'POST',
-        JSON.stringify({ name, email, password, confirmPassword }),
-        { 'Content-Type': 'application/json' }
-      );
-
-      auth.login();
+      await signupRequest(userCredentials);
+      history.push('/');
     } catch (err) {}
   };
 
@@ -57,7 +50,7 @@ const Register = () => {
                 <FormInput
                   type='text'
                   name='username'
-                  value={name}
+                  value={userCredentials.name}
                   handleChange={(e) =>
                     setUserCredentials({
                       ...userCredentials,
@@ -76,7 +69,7 @@ const Register = () => {
                   type='email'
                   name='email'
                   label='Email'
-                  value={email}
+                  value={userCredentials.email}
                   handleChange={(e) =>
                     setUserCredentials({
                       ...userCredentials,
@@ -91,7 +84,7 @@ const Register = () => {
                   type='password'
                   name='password'
                   label='Password'
-                  value={password}
+                  value={userCredentials.password}
                   handleChange={(e) =>
                     setUserCredentials({
                       ...userCredentials,
@@ -107,7 +100,7 @@ const Register = () => {
                 <FormInput
                   type='password'
                   name='confirmPassword'
-                  value={confirmPassword}
+                  value={userCredentials.confirmPassword}
                   handleChange={(e) =>
                     setUserCredentials({
                       ...userCredentials,

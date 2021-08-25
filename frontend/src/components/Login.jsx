@@ -1,31 +1,24 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { UserContext } from '../context/data/user.context';
+import { UserContext } from '../providers/user.provider';
 import FormInput from './FormInput';
 import ErrorModal from './ErrorModal';
-
 import LoadingSpinner from './LoadingSpinner';
-import { useHttpClient } from '../shared/http-hook';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { error, isLoading, sendRequest } = useHttpClient();
+  const history = useHistory();
 
-  const auth = useContext(UserContext);
+  const { isLoading, error, loginRequest, login } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await sendRequest(
-        'http://localhost:5000/api/v1/users/login',
-        'POST',
-        JSON.stringify({ email, password }),
-        { 'Content-Type': 'application/json' }
-      );
-
-      auth.login();
+      await loginRequest(email, password);
+      login();
+      history.push('/');
     } catch (err) {}
   };
 

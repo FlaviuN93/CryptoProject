@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, makeStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from 'antd/lib/modal/Modal';
-import { Select } from 'antd';
-import { useHttpClient } from '../shared/http-hook';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorModal from './ErrorModal';
 import CurrencyCard from './CurrencyCard';
+import { CryptoContext } from '../providers/crypto.provider';
+import { Select } from 'antd';
 const { Option } = Select;
 
 const useStyles = makeStyles((theme) => ({
@@ -26,23 +26,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 const AddCurrencyCard = () => {
   const [visible, setVisible] = useState(false);
-  const { error, isLoading, sendRequest } = useHttpClient();
-  const [cryptos, setCryptos] = useState([]);
-  const [selectedCrypto, setSelectedCrypto] = useState([]);
   const [values, setValues] = useState([]);
-
-  useEffect(() => {
-    const getAllCrypto = async () => {
-      try {
-        const { data } = await sendRequest(
-          'http://localhost:5000/api/v1/crypto'
-        );
-        setCryptos(data.cryptos);
-      } catch (err) {}
-    };
-
-    getAllCrypto();
-  }, [sendRequest]);
+  const { isLoading, error, cryptos, getCryptoByName, selectedCrypto } =
+    useContext(CryptoContext);
 
   const showModal = () => {
     setVisible(true);
@@ -50,31 +36,18 @@ const AddCurrencyCard = () => {
 
   const handleOk = () => {
     console.log(values);
-    const getCryptoByName = async () => {
-      try {
-        const { data } = await sendRequest(
-          'http://localhost:5000/api/v1/crypto/:name',
-          'POST',
-          JSON.stringify(values),
-          { 'Content-Type': 'application/json' }
-        );
-        setSelectedCrypto(data.selectedCrypto);
-      } catch (err) {}
-    };
-    getCryptoByName();
+    getCryptoByName(values);
     setVisible(false);
   };
 
   const handleDeselect = (event) => {
     console.log(event.type);
-    if (event.type === 'click') {
-      setValues();
-    }
     setValues(values.filter((crypto) => crypto !== event));
   };
   const handleCancel = () => {
     setVisible(false);
   };
+
   const classes = useStyles();
 
   return (
@@ -115,6 +88,7 @@ const AddCurrencyCard = () => {
               optionLabelProp='label'
               onSelect={(event) => setValues([...values, event])}
               onDeselect={handleDeselect}
+              value={values}
             >
               {cryptos.map((crypto) => (
                 <Option value={crypto.name} key={crypto.id}>
@@ -150,7 +124,7 @@ const AddCurrencyCard = () => {
             marginBottom: '5px',
             marginLeft: '10px',
           }}
-          onClick={handleDeselect}
+          onClick={() => setValues([])}
         >
           Clear All
         </Button>

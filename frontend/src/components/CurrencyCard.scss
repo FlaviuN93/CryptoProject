@@ -4,11 +4,9 @@
   width: 11rem;
   display: inline-flex;
   margin-right: 20px;
+  background-color: rgba(#fff6f0, 0.7);
   cursor: pointer;
   box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
-
-  @media only screen and (max-width: '64em') {
-  }
 
   &__grid {
     display: grid;
@@ -25,5 +23,14 @@
 
   p {
     margin: 0;
+  }
+
+  &-active {
+    background-color: #53b9ea;
+    color: white;
+
+    .currency-short {
+      color: #f3f1f5;
+    }
   }
 }

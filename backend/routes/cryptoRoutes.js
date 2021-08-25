@@ -1,4 +1,5 @@
 const express = require('express');
+const { protect } = require('../controllers/authController.js');
 const {
   getAllCrypto,
   getCryptoByName,
@@ -6,6 +7,6 @@ const {
 const router = express.Router();
 
 router.route('/').get(getAllCrypto);
-router.route('/:name').post(getCryptoByName);
+router.route('/:name').post(protect, getCryptoByName);
 
 module.exports = router;

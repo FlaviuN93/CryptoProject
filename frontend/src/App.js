@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Redirect,
@@ -9,28 +9,23 @@ import './App.css';
 import Register from './components/Register';
 import Login from './components/Login';
 import HomePage from './pages/HomePage';
-import { UserContext } from './context/data/user.context';
+import UserProvider from './providers/user.provider';
+import CryptoProvider from './providers/crypto.provider';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
-  }, []);
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-  }, []);
   return (
-    <UserContext.Provider value={{ isLoggedIn, logout, login }}>
-      <Router>
-        <Switch>
-          <Route path='/' exact component={HomePage} />
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
-          <Redirect to='/' />
-        </Switch>
-      </Router>
-    </UserContext.Provider>
+    <UserProvider>
+      <CryptoProvider>
+        <Router>
+          <Switch>
+            <Route path='/' exact component={HomePage} />
+            <Route path='/register' component={Register} />
+            <Route path='/login' component={Login} />
+            <Redirect to='/' />
+          </Switch>
+        </Router>
+      </CryptoProvider>
+    </UserProvider>
   );
 };
 

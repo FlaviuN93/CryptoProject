@@ -29,6 +29,10 @@ a {
   font-size: 1rem;
 }
 
+span {
+  font-size: 0.9rem;
+}
+
 svg.MuiSvgIcon-root {
   font-size: 2rem;
 }
@@ -38,7 +42,7 @@ svg.MuiSvgIcon-root.ant-menu-item-icon {
 }
 
 .backdrop {
-  height: 100vh;
+  height: 120vh;
   width: 100%;
   position: fixed;
   top: 0;
