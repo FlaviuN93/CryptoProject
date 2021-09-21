@@ -8,7 +8,6 @@ const server = app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`)
 );
-
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);
   console.log('Unhandled Rejection! Shutting down...');

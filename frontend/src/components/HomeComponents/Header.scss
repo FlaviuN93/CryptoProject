@@ -23,8 +23,19 @@
     background: linear-gradient(180deg, #ff409a, #c438ef);
     color: white;
     border-radius: 30px;
+    box-shadow: 2px 4px 8px #f8e3d4;
   }
-
+  #header-btn.MuiButton-root {
+    padding: 5px 14px;
+    margin-right: 0.5rem;
+    min-width: 32px;
+    @media only screen and (max-width: 60em) {
+      padding: 5px 8px;
+    }
+  }
+  #header-btn .MuiButton-startIcon {
+    margin-right: 2px;
+  }
   .nav-list {
     width: 55%;
     display: flex;

@@ -2,15 +2,17 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { UserContext } from '../providers/user.provider';
-import FormInput from './FormInput';
-import ErrorModal from './ErrorModal';
-import LoadingSpinner from './LoadingSpinner';
+import FormInput from './SharedComponents/FormInput';
+import ErrorModal from './SharedComponents/ErrorModal';
+import LoadingSpinner from './SharedComponents/LoadingSpinner';
+import ErrorModal2 from './SharedComponents/ErrorModal2';
+import { StatesContext } from '../providers/states.provider';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-
+  const { handleModal } = useContext(StatesContext);
   const { isLoading, error, loginRequest, login } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
@@ -28,7 +30,8 @@ const Login = () => {
         <LoadingSpinner />
       ) : (
         <>
-          {error ? <ErrorModal error={error} /> : null}{' '}
+          {/* {error ? <ErrorModal error={error} /> : null}{' '} */}
+          {error ? <ErrorModal2 error={error} /> : null}{' '}
           <h1
             style={{
               color: '#001E6C',
@@ -46,7 +49,7 @@ const Login = () => {
             </span>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className='auth-container'>
+            <div className='input-container'>
               <div>
                 <FormInput
                   type='email'

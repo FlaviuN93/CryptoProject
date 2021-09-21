@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { Modal } from 'react-bootstrap';
 import './ErrorModal.scss';
+import Backdrop from './Backdrop';
 
 const ErrorModal = ({ error }) => {
   const [close, setClose] = useState(true);
-
+  const handleClose = () => setClose(false);
   return (
-    <div
-      className={`${close ? 'backdrop' : ''}`}
-      onClick={() => setClose(false)}
-    >
-      <Modal className='error-modal' show={close} onHide={() => setClose(true)}>
+    <>
+      {close && <Backdrop onClick={handleClose} />}
+      <Modal className='error-modal' show={close} onHide={close}>
         <Modal.Header className='modal__header'>
           <Modal.Title className='modal__title'>{error.status}</Modal.Title>
+          <IconButton className='close-button' onClick={handleClose}>
+            <CloseIcon className='close-icon' />
+          </IconButton>
         </Modal.Header>
         <Modal.Body>
           <h2 className='modal__h2'>Ooops!</h2>
           <p className='modal__p'>Something went wrong. {error.message}</p>
+
           <div style={{ textAlign: 'center' }}>
             <Button
               style={{
@@ -28,7 +33,6 @@ const ErrorModal = ({ error }) => {
               }}
               variant='outlined'
               color='secondary'
-              className='modal__button'
               onClick={() => setClose(false)}
             >
               Try Again
@@ -36,7 +40,7 @@ const ErrorModal = ({ error }) => {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 };
 

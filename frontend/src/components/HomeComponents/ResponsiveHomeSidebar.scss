@@ -1,0 +1,20 @@
+.ant-menu-inline {
+  width: 200px;
+
+  @media only screen and (max-width: '25em') {
+    width: 180px;
+  }
+}
+
+#icon-x-close {
+  font-size: 1.5rem;
+  color: white;
+
+  @media only screen and (max-width: '50em') {
+    font-size: 1.75rem;
+  }
+}
+
+.ant-menu-item-selected {
+  color: #53b9ea !important;
+}

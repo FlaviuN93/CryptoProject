@@ -1,13 +1,12 @@
 import React, { useState, createContext, useEffect, useContext } from 'react';
 
-import { useHttpClient } from '../shared/http-hook';
+import { useHttpClient } from '../shared/hooks/http-hook';
 import { UserContext } from './user.provider';
 
 export const CryptoContext = createContext({});
 
-const selectCryptoFromStorage = JSON.parse(
-  localStorage.getItem('selectedCrypto') || []
-);
+const selectCryptoFromStorage =
+  JSON.parse(localStorage.getItem('selectedCrypto')) || [];
 
 const CryptoProvider = ({ children }) => {
   const { isLoading, error, sendRequest } = useHttpClient();

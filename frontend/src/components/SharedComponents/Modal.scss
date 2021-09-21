@@ -1,0 +1,14 @@
+.modal-animation-enter {
+  opacity: 0;
+}
+.modal-animation-enter-active {
+  opacity: 1;
+  transition: all 300ms;
+}
+.modal-animation-exit {
+  opacity: 1;
+}
+.modal-animation-exit-active {
+  opacity: 0;
+  transition: all 300ms;
+}

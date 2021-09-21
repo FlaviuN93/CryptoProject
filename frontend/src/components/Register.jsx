@@ -3,9 +3,9 @@ import { Button } from '@material-ui/core';
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../providers/user.provider';
-import ErrorModal from './ErrorModal';
-import FormInput from './FormInput';
-import LoadingSpinner from './LoadingSpinner';
+import FormInput from './SharedComponents/FormInput';
+import ErrorModal from './SharedComponents/ErrorModal';
+import LoadingSpinner from './SharedComponents/LoadingSpinner';
 const Register = () => {
   const [userCredentials, setUserCredentials] = useState({
     name: '',
@@ -45,7 +45,7 @@ const Register = () => {
             </span>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className='auth-container'>
+            <div className='input-container'>
               <div>
                 <FormInput
                   type='text'

@@ -2,25 +2,25 @@ import React, { useState, useContext } from 'react';
 import { Button, makeStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from 'antd/lib/modal/Modal';
-import LoadingSpinner from './LoadingSpinner';
-import ErrorModal from './ErrorModal';
+import LoadingSpinner from '../SharedComponents/LoadingSpinner';
+import ErrorModal from '../SharedComponents/ErrorModal';
 import CurrencyCard from './CurrencyCard';
-import { CryptoContext } from '../providers/crypto.provider';
+import { CryptoContext } from '../../providers/crypto.provider';
 import { Select } from 'antd';
 const { Option } = Select;
 
 const useStyles = makeStyles((theme) => ({
   button: {
     border: '2px dashed #E2E2E8',
-    width: '14rem',
-    height: '6rem',
-    fontSize: '.75rem',
+    width: '12rem',
+    height: '4.75rem',
     borderRadius: '14px',
+    fontWeight: '700',
+    marginLeft: '20px',
     color: '#D1D1D7',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       width: '11rem',
-      height: '5rem',
-      fontSize: '.7rem',
+      height: '4.75rem',
     },
   },
 }));
@@ -30,9 +30,7 @@ const AddCurrencyCard = () => {
   const { isLoading, error, cryptos, getCryptoByName, selectedCrypto } =
     useContext(CryptoContext);
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  const showModal = () => setVisible(true);
 
   const handleOk = () => {
     console.log(values);
@@ -40,13 +38,10 @@ const AddCurrencyCard = () => {
     setVisible(false);
   };
 
-  const handleDeselect = (event) => {
-    console.log(event.type);
+  const handleDeselect = (event) =>
     setValues(values.filter((crypto) => crypto !== event));
-  };
-  const handleCancel = () => {
-    setVisible(false);
-  };
+
+  const handleCancel = () => setVisible(false);
 
   const classes = useStyles();
 

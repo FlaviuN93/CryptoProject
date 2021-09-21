@@ -5,13 +5,13 @@
     "short": "BTC",
     "icon": "/images/icons/btc.png",
     "price": {
-      "january": 35500,
-      "february": 51670,
-      "march": 48600,
-      "april": 57500,
-      "may": 35200,
-      "june": 37400,
-      "july": 32100
+      "january": 3500,
+      "february": 5167,
+      "march": 4860,
+      "april": 5750,
+      "may": 3520,
+      "june": 3740,
+      "july": 3210
     },
     "color": "#C36839"
   },

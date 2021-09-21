@@ -1,0 +1,74 @@
+.sidebar {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 246, 240, 0.38) 0%,
+    rgba(251, 232, 233, 0.31) 57.44%,
+    rgba(252, 252, 255, 0.57) 100%
+  );
+  position: relative;
+  &-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 7rem;
+  }
+
+  &-logo i {
+    width: 15%;
+    font-size: 15px;
+    color: #00c1d4;
+  }
+}
+
+.sidebar-container {
+  & .sidebar-item-0,
+  .sidebar-item-1,
+  .sidebar-item-2,
+  .sidebar-item-3,
+  .sidebar-item-4 {
+    color: #6f6c99;
+    position: absolute;
+    font-size: 12.75px;
+    line-height: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    width: 75%;
+    transition: all 0.1s ease-out;
+  }
+  & svg {
+    margin-right: 1.5rem;
+    margin-left: -1rem;
+  }
+
+  & .sidebar-item-0 {
+    top: 170px;
+    left: 54.6px;
+  }
+  & .sidebar-item-1 {
+    top: 230px;
+    left: 54.6px;
+  }
+
+  & .sidebar-item-2 {
+    top: 290px;
+    left: 54.6px;
+  }
+  & .sidebar-item-3 {
+    top: 350px;
+    left: 54.6px;
+  }
+  & .sidebar-item-4 {
+    top: 410px;
+    left: 54.6px;
+  }
+
+  .MuiListItem-root.Mui-selected,
+  .MuiListItem-root.Mui-selected:hover {
+    color: #53b9ea;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: #fcfcff91;
+    letter-spacing: 0.5px;
+  }
+}

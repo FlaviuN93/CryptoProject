@@ -7,31 +7,47 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Avatar, Button, useMediaQuery } from '@material-ui/core';
+import { UserContext } from '../../providers/user.provider';
 import SearchBar from './SearchBar';
-import { UserContext } from '../providers/user.provider';
 import { Dropdown, Menu } from 'antd';
 import { Link } from 'react-router-dom';
+import NotificationModal from './NotificationModal';
+import { StatesContext } from '../../providers/states.provider';
 
 const Header = () => {
-  const isLargePhone = useMediaQuery('(max-width:54em)');
+  const isTablet = useMediaQuery('(max-width:55em)');
   const isPhone = useMediaQuery('(max-width:43.75em)');
+  const { toggleModal, handleModal } = useContext(StatesContext);
+
   const { userInfo, isLoggedIn, logout } = useContext(UserContext);
   const { user } = userInfo;
 
   const menu = (
     <Menu>
-      <Menu.Item key='1' icon={<AccountCircleIcon />}>
-        <Link to='/'>Profile</Link>
+      <Menu.Item
+        key='1'
+        style={{ color: '#6f6c99' }}
+        icon={<AccountCircleIcon />}
+      >
+        <Link to={`/user/${user.id}`}>Profile</Link>
       </Menu.Item>
       {isPhone ? (
-        <Menu.Item key='2' icon={<NotificationsIcon />}>
-          <Link to='/'>Notifications</Link>
+        <Menu.Item
+          style={{ color: '#6f6c99' }}
+          key='2'
+          icon={<NotificationsIcon />}
+        >
+          <Link to='/notifications'>Notifications</Link>
         </Menu.Item>
       ) : null}
-      <Menu.Item key='3' icon={<AccountBalanceWalletIcon />}>
+      <Menu.Item
+        style={{ color: '#6f6c99' }}
+        key='3'
+        icon={<AccountBalanceWalletIcon />}
+      >
         <Link to='/'>Wallet</Link>
       </Menu.Item>{' '}
-      <Menu.Item key='4' icon={<ExitToAppIcon />}>
+      <Menu.Item style={{ color: '#6f6c99' }} key='4' icon={<ExitToAppIcon />}>
         <Link to='/login' onClick={logout}>
           Logout
         </Link>
@@ -66,19 +82,23 @@ const Header = () => {
               </Button>
               {isPhone ? null : (
                 <Button
-                  style={{ width: '4rem', height: '2.2rem' }}
-                  startIcon={<NotificationsIcon style={{ height: '1.2rem' }} />}
+                  startIcon={<NotificationsIcon style={{ height: '1.1rem' }} />}
                   id='header-btn'
+                  onClick={handleModal}
                 >
                   15
                 </Button>
               )}
+              <NotificationModal
+                showModal={toggleModal}
+                handleModal={handleModal}
+              />
               <Dropdown overlay={menu} placement='topRight' trigger={['click']}>
                 <Button>
                   {' '}
                   <Avatar alt='name' src='' style={{ marginRight: '5px' }} />
-                  {isLargePhone ? null : (
-                    <span style={{ color: 'black' }}>{user.name}</span>
+                  {isTablet ? null : (
+                    <span style={{ color: '#6f6c99' }}>{user.name}</span>
                   )}
                   <ExpandMoreIcon
                     style={{ color: '#6F6C99', fontSize: '28px' }}

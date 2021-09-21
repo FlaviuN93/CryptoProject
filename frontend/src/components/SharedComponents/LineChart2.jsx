@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import 'zingchart/es6';
 import ZingChart from 'zingchart-react';
-import { CryptoContext } from '../providers/crypto.provider';
+import { CryptoContext } from '../../providers/crypto.provider';
 import './LineChart2.scss';
 
 const LineChart2 = () => {
@@ -29,6 +29,7 @@ const LineChart2 = () => {
         },
       },
       'scale-x': {
+        'line-color': '#f6f6f6',
         labels: [
           'January',
           'February',
@@ -40,10 +41,10 @@ const LineChart2 = () => {
         ],
       },
       'scale-y': {
-        'line-color': '#f6f7f8',
+        'line-color': '#f6f6f6',
         shadow: 0,
         guide: {
-          'line-style': 'dashed',
+          'line-color': 'white',
         },
         'minor-ticks': 0,
         'thousands-separator': ',',
@@ -85,7 +86,7 @@ const LineChart2 = () => {
       series: selectedCrypto.map((crypto) => {
         return {
           values: Object.values(crypto.price),
-          text: crypto.name,
+          text: crypto.short,
           'line-color': crypto.color,
           'legend-item': {
             'background-color': crypto.color,

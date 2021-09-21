@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import TrendingDownIcon from '@material-ui/icons/TrendingDown';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import { Card } from '@material-ui/core';
 import './CurrencyCard.scss';
 
 const CurrencyCard = (props) => {
   const { icon, short, price } = props;
   const [selectCard, setSelectCard] = useState(false);
 
-  const handleClick = (event) => {
-    return setSelectCard(!selectCard);
-  };
+  const handleClick = (event) => setSelectCard(!selectCard);
 
   return (
     <>
       <div
-        style={{ borderRadius: '20px' }}
+        style={{ borderRadius: '9px' }}
         className={`${selectCard ? 'currency-card-active' : ''} currency-card`}
         onClick={handleClick}
       >

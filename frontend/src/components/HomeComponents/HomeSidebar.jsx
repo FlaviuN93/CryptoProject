@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Sidebar.scss';
+import './HomeSidebar.scss';
 
 import { ListItem } from '@material-ui/core';
 import { AccountBalanceWallet, Dashboard } from '@material-ui/icons';
@@ -11,9 +11,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const Sidebar = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-  };
+  const handleListItemClick = (event, index) => setSelectedIndex(index);
 
   return (
     <>
@@ -28,67 +26,51 @@ const Sidebar = () => {
         <div className='sidebar-container'>
           <Link to='/'>
             <ListItem
-              className='sidebar-item'
+              className='sidebar-item-0'
               selected={selectedIndex === 0}
               onClick={(event) => handleListItemClick(event, 0)}
             >
-              <Dashboard style={{ marginRight: '6px' }} />
+              <Dashboard />
               Dashboard
-              {selectedIndex === 0 ? (
-                <span className='sidebar-item-dot'>.</span>
-              ) : null}
             </ListItem>
           </Link>
           <Link to='/'>
             <ListItem
-              className='sidebar-item'
+              className='sidebar-item-1'
               selected={selectedIndex === 1}
               onClick={(event) => handleListItemClick(event, 1)}
             >
-              <AccountBalanceWallet style={{ marginRight: '6px' }} />
+              <AccountBalanceWallet />
               Wallet
-              {selectedIndex === 1 ? (
-                <span className='sidebar-item-dot'>.</span>
-              ) : null}
             </ListItem>
           </Link>{' '}
           <Link to='/'>
             <ListItem
-              className='sidebar-item'
+              className='sidebar-item-2'
               selected={selectedIndex === 2}
               onClick={(event) => handleListItemClick(event, 2)}
             >
-              <ForumIcon style={{ marginRight: '6px' }} />
+              <ForumIcon />
               Messages
-              {selectedIndex === 2 ? (
-                <span className='sidebar-item-dot'>.</span>
-              ) : null}
             </ListItem>{' '}
           </Link>{' '}
           <Link to='/'>
             <ListItem
-              className='sidebar-item'
+              className='sidebar-item-3'
               selected={selectedIndex === 3}
               onClick={(event) => handleListItemClick(event, 3)}
             >
-              <ImportExportIcon style={{ marginRight: '6px' }} />
+              <ImportExportIcon />
               Trade
-              {selectedIndex === 3 ? (
-                <span className='sidebar-item-dot'>.</span>
-              ) : null}
             </ListItem>
           </Link>{' '}
           <Link to='/'>
             <ListItem
-              className='sidebar-item'
+              className='sidebar-item-4'
               selected={selectedIndex === 4}
               onClick={(event) => handleListItemClick(event, 4)}
             >
-              <AccountCircleIcon style={{ marginRight: '6px' }} /> Account
-              Setting
-              {selectedIndex === 4 ? (
-                <span className='sidebar-item-dot'>.</span>
-              ) : null}
+              <AccountCircleIcon /> Account Setting
             </ListItem>
           </Link>
         </div>

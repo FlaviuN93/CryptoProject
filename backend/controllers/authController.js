@@ -115,3 +115,16 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = foundUser;
   next();
 });
+
+// exports.updatePassword = catchAsync(async (req, res, next) => {
+//   let user = users.find(req.user.id);
+//   const { currentPassword, newPassword } = req.body;
+//   // 1) Check if posted password is correct.
+//   if (user.password !== currentPassword) {
+//     return next(new AppError('Current password is wrong', 401));
+//   }
+//   // 2) If so update
+//   user.password = currentPassword;
+
+//   // 3) Log user in, send JWT
+// });
