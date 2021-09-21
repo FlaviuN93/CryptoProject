@@ -7,7 +7,6 @@ import './ErrorModal2.scss';
 const ErrorModal2 = ({ error }) => {
   const [close, setClose] = useState(true);
   const handleClose = () => setClose(!close);
-
   console.log(close, error);
   return (
     <Modal
