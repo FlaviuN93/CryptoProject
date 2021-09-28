@@ -3,10 +3,10 @@ import { Button, makeStyles } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from 'antd/lib/modal/Modal';
 import LoadingSpinner from '../SharedComponents/LoadingSpinner';
-import ErrorModal from '../SharedComponents/ErrorModal';
 import CurrencyCard from './CurrencyCard';
 import { CryptoContext } from '../../providers/crypto.provider';
 import { Select } from 'antd';
+import ErrorModal2 from '../SharedComponents/ErrorModal2';
 const { Option } = Select;
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     height: '4.75rem',
     borderRadius: '14px',
     fontWeight: '700',
-    marginLeft: '20px',
     color: '#D1D1D7',
     [theme.breakpoints.down('md')]: {
       width: '11rem',
@@ -27,13 +26,18 @@ const useStyles = makeStyles((theme) => ({
 const AddCurrencyCard = () => {
   const [visible, setVisible] = useState(false);
   const [values, setValues] = useState([]);
-  const { isLoading, error, cryptos, getCryptoByName, selectedCrypto } =
-    useContext(CryptoContext);
+  const {
+    isLoading,
+    error,
+    cryptos,
+    trendCrypto,
+    getCryptoByName,
+    selectedCrypto,
+  } = useContext(CryptoContext);
 
   const showModal = () => setVisible(true);
 
   const handleOk = () => {
-    console.log(values);
     getCryptoByName(values);
     setVisible(false);
   };
@@ -46,15 +50,15 @@ const AddCurrencyCard = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <div style={{ display: 'flex', flexWrap: 'wrap', width: '90%' }}>
       {' '}
       {isLoading ? (
         <LoadingSpinner />
       ) : error ? (
-        <ErrorModal error={error} />
+        <ErrorModal2 error={error} />
       ) : (
         selectedCrypto.map((crypto) => (
-          <CurrencyCard key={crypto.id} {...crypto} />
+          <CurrencyCard key={crypto.id} crypto={crypto} />
         ))
       )}
       <Button
@@ -74,7 +78,7 @@ const AddCurrencyCard = () => {
           <LoadingSpinner />
         ) : (
           <>
-            {error ? <ErrorModal error={error} /> : null}
+            {error ? <ErrorModal2 error={error} /> : null}
 
             <Select
               mode='multiple'
@@ -124,7 +128,7 @@ const AddCurrencyCard = () => {
           Clear All
         </Button>
       </Modal>
-    </>
+    </div>
   );
 };
 

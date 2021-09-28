@@ -10,9 +10,10 @@ const selectCryptoFromStorage =
 
 const CryptoProvider = ({ children }) => {
   const { isLoading, error, sendRequest } = useHttpClient();
-  const [cryptos, setCryptos] = useState([]);
   const { userInfo } = useContext(UserContext);
+  const [cryptos, setCryptos] = useState([]);
   const [selectedCrypto, setSelectedCrypto] = useState(selectCryptoFromStorage);
+  const [trendCrypto, setTrendCrypto] = useState([]);
 
   useEffect(() => {
     localStorage.setItem('selectedCrypto', JSON.stringify(selectedCrypto));
@@ -31,6 +32,18 @@ const CryptoProvider = ({ children }) => {
     getAllCrypto();
   }, [sendRequest]);
 
+  useEffect(() => {
+    const trendCrypto = async () => {
+      try {
+        const { data } = await sendRequest(
+          'http://localhost:5000/api/v1/crypto/trend'
+        );
+        setTrendCrypto(data.trendingCrypto.data);
+      } catch (err) {}
+    };
+    trendCrypto();
+  }, [sendRequest]);
+
   const getCryptoByName = async (values) => {
     try {
       const { data } = await sendRequest(
@@ -42,16 +55,18 @@ const CryptoProvider = ({ children }) => {
           Authorization: 'Bearer ' + userInfo.token,
         }
       );
-      console.log(data);
+
       setSelectedCrypto(data.selectedCrypto);
     } catch (err) {}
   };
+
   return (
     <CryptoContext.Provider
       value={{
         getCryptoByName,
         cryptos,
         selectedCrypto,
+        trendCrypto,
         isLoading,
         error,
       }}

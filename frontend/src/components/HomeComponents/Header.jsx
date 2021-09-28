@@ -78,7 +78,11 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <Button>
-                <AppsIcon style={{ height: '1.8rem', width: '2rem' }} />
+                <img
+                  src='images/icons/MenuIcn@x3.png'
+                  alt='menu-icn'
+                  style={{ width: '25px', height: '25px' }}
+                />
               </Button>
               {isPhone ? null : (
                 <Button

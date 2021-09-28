@@ -1,36 +1,70 @@
 import React, { useState } from 'react';
-import TrendingDownIcon from '@material-ui/icons/TrendingDown';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import { calculatePercent } from '../../utils/cryptoFunctions';
+import SmallLineChart from '../SharedComponents/SmallLineChart';
 import './CurrencyCard.scss';
 
 const CurrencyCard = (props) => {
-  const { icon, short, price } = props;
+  const { icon, short, price } = props.crypto;
   const [selectCard, setSelectCard] = useState(false);
-
-  const handleClick = (event) => setSelectCard(!selectCard);
+  const percentageResult = calculatePercent(price.june, price.may);
+  console.log(percentageResult);
+  const handleClick = () => setSelectCard(!selectCard);
 
   return (
     <>
       <div
         style={{ borderRadius: '9px' }}
-        className={`${selectCard ? 'currency-card-active' : ''} currency-card`}
+        className='currency-card'
         onClick={handleClick}
       >
-        <div className='currency-card__grid'>
-          <div>
+        <div className='currency-card-container'>
+          <div className='currency-card-icon'>
             <img
               style={{ width: '22px', height: '22px' }}
               src={icon}
               alt={short}
             />
           </div>
-          <div>
-            <p>{price.july}$</p>
-            <TrendingDownIcon style={{ color: '#E3507A', fontSize: '26px' }} />
-          </div>
-          <div>
-            <p className='currency-short'>{short}</p>
-            <p>percent</p>
+          <div className='currency-card-info'>
+            <div className='currency-card-price'>{price.july}$</div>
+            <div className='currency-card-name'>{short}</div>
+            <SmallLineChart
+              crypto={props.crypto}
+              margin={'2 0 0 5'}
+              backgroundColor={'rgba(255, 246, 240, 0.7)'}
+              pricePercentage={percentageResult}
+            />
+
+            <div>
+              {percentageResult > 0 ? (
+                <img
+                  className='up-arrow'
+                  src='images/icons/UpArrow@x3.png'
+                  alt='up-arrow'
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    marginRight: '3px',
+                    marginBlockEnd: '3px',
+                  }}
+                />
+              ) : (
+                <img
+                  className='down-arrow'
+                  src='images/icons/DownArrow@x3.png'
+                  alt='down-arrow'
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    marginRight: '3px',
+                    marginBlockEnd: '3px',
+                  }}
+                />
+              )}{' '}
+              <span className='currency-card-percentage'>
+                {percentageResult.toFixed(2)}%
+              </span>
+            </div>
           </div>
         </div>
       </div>

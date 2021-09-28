@@ -11,13 +11,15 @@ export const useHttpClient = () => {
         const response = await fetch(url, { method, headers, body });
 
         const data = await response.json();
-
         if (!response.ok) {
           setError(data);
+          setIsLoading(false);
           throw new Error(data);
+        } else {
+          setError();
+          setIsLoading(false);
+          return data;
         }
-        setIsLoading(false);
-        return data;
       } catch (err) {
         setIsLoading(false);
       }

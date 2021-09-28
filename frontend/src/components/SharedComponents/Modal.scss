@@ -1,3 +1,11 @@
+.modal-animation-appear {
+  opacity: 0;
+}
+.modal-animation-appear-active {
+  opacity: 1;
+  transition: all 500ms;
+}
+
 .modal-animation-enter {
   opacity: 0;
 }

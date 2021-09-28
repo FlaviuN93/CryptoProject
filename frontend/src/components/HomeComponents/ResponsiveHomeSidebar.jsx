@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     color: '#6f6c99',
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
+    height: '75vh',
   },
   responseSidebarItem: {
     margin: '0 !important',

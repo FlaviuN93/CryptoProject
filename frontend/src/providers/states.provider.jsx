@@ -2,9 +2,7 @@ import React, { useState, createContext } from 'react';
 
 export const StatesContext = createContext({
   toggleModal: false,
-
   handleModal: () => {},
-  handleAnimation: () => {},
 });
 
 const StatesProvider = ({ children }) => {

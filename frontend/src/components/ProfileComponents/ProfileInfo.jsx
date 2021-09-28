@@ -14,7 +14,7 @@ const ProfileInfo = () => {
   });
   const { userInfo } = useContext(UserContext);
   const { token, user } = userInfo;
-  console.log(user);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
   };

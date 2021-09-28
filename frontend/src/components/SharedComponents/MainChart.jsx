@@ -2,9 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import 'zingchart/es6';
 import ZingChart from 'zingchart-react';
 import { CryptoContext } from '../../providers/crypto.provider';
-import './LineChart2.scss';
 
-const LineChart2 = () => {
+const MainChart = () => {
   const { selectedCrypto } = useContext(CryptoContext);
   const [data, setData] = useState({});
 
@@ -29,7 +28,17 @@ const LineChart2 = () => {
         },
       },
       'scale-x': {
-        'line-color': '#f6f6f6',
+        item: {
+          paddingTop: 20,
+        },
+
+        lineColor: 'none',
+        tick: {
+          visible: false,
+        },
+        guide: {
+          visible: false,
+        },
         labels: [
           'January',
           'February',
@@ -41,13 +50,13 @@ const LineChart2 = () => {
         ],
       },
       'scale-y': {
-        'line-color': '#f6f6f6',
-        shadow: 0,
-        guide: {
-          'line-color': 'white',
+        lineColor: 'none',
+        tick: {
+          visible: false,
         },
-        'minor-ticks': 0,
-        'thousands-separator': ',',
+        guide: {
+          visible: false,
+        },
       },
       'crosshair-x': {
         'line-color': '#efefef',
@@ -81,6 +90,7 @@ const LineChart2 = () => {
           sequence: 1,
           speed: 100,
         },
+        aspect: 'spline',
       },
 
       series: selectedCrypto.map((crypto) => {
@@ -113,4 +123,4 @@ const LineChart2 = () => {
   );
 };
 
-export default LineChart2;
+export default MainChart;

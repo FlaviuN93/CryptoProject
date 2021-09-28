@@ -1,11 +1,9 @@
 import React from 'react';
 import { makeStyles, useMediaQuery } from '@material-ui/core';
-import { Container } from '@material-ui/core';
 
 import Header from '../components/HomeComponents/Header';
-import Wallet from '../components/HomeComponents/Wallet';
 import AddCurrencyCard from '../components/HomeComponents/AddCurrencyCard';
-import LineChart2 from '../components/SharedComponents/LineChart2';
+import MainChart from '../components/SharedComponents/MainChart';
 import ResponsiveHomeSidebar from '../components/HomeComponents/ResponsiveHomeSidebar';
 import HomeSidebar from '../components/HomeComponents/HomeSidebar';
 import TrendSection from '../components/HomeComponents/TrendSection';
@@ -15,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     gridTemplateColumns: '80px 1fr',
     height: '100vh',
+  },
+  marginSpace: {
+    marginLeft: '30px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '15px',
+    },
   },
   desktopContainer: {
     display: 'grid',
@@ -33,11 +37,10 @@ const HomePage = () => {
       {isTablet ? (
         <div className={classes.tabletContainer}>
           <ResponsiveHomeSidebar />
-          <div>
+          <div className={classes.marginSpace}>
             <Header />
-            <Wallet />
             <AddCurrencyCard />
-            <LineChart2 />
+            <MainChart />
             <TrendSection />
           </div>
         </div>
@@ -46,9 +49,9 @@ const HomePage = () => {
           <HomeSidebar />
           <div style={{ marginLeft: '55px' }}>
             <Header />
-            <Wallet />
+
             <AddCurrencyCard />
-            <LineChart2 />
+            <MainChart />
             <TrendSection />
           </div>
         </div>

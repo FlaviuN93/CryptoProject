@@ -13,7 +13,7 @@ export const UserContext = createContext({
 const userFromLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {};
 
 const UserProvider = ({ children }) => {
-  const { isLoading, error, sendRequest } = useHttpClient();
+  let { isLoading, error, sendRequest } = useHttpClient();
   const [userInfo, setUserInfo] = useState(userFromLocalStorage);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 

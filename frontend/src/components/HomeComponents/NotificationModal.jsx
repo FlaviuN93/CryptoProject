@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import './NotificationModal.scss';
 import Modal from '../SharedComponents/Modal';
 import { Avatar } from '@material-ui/core';
-import TrendingDownIcon from '@material-ui/icons/TrendingDown';
 import { Link } from 'react-router-dom';
 import { CryptoContext } from '../../providers/crypto.provider';
 import { StatesContext } from '../../providers/states.provider';
+import SmallLineChart from '../SharedComponents/SmallLineChart';
+import { calculatePercent } from '../../utils/cryptoFunctions';
 const NotificationModal = () => {
   const { cryptos } = useContext(CryptoContext);
   const { toggleModal, handleModal } = useContext(StatesContext);
+
   return (
     <>
       <Modal
@@ -52,12 +54,48 @@ const NotificationModal = () => {
                       Bitcoin has gone up by 40%
                     </div>
                     <div className='notification-link-container'>
-                      <div>
-                        <span>graph</span>
-                        <TrendingDownIcon
-                          style={{ color: '#E3507A', fontSize: '17px' }}
+                      <div style={{ display: 'inline-flex' }}>
+                        <SmallLineChart
+                          width={45}
+                          height={25}
+                          crypto={crypto}
+                          pricePercentage={calculatePercent(
+                            crypto.price.june,
+                            crypto.price.may
+                          )}
                         />
-                        <span>percent</span>
+
+                        {calculatePercent(crypto.price.june, crypto.price.may) >
+                        0 ? (
+                          <img
+                            className='up-arrow'
+                            src='images/icons/UpArrow@x3.png'
+                            alt='up-arrow'
+                            style={{
+                              width: '6px',
+                              height: '6px',
+                              marginRight: '6.5px',
+                            }}
+                          />
+                        ) : (
+                          <img
+                            className='down-arrow'
+                            src='images/icons/DownArrow@x3.png'
+                            alt='down-arrow'
+                            style={{
+                              width: '6px',
+                              height: '6px',
+                              marginRight: '6.5px',
+                            }}
+                          />
+                        )}
+                        <span className='notification-percentage'>
+                          {calculatePercent(
+                            crypto.price.june,
+                            crypto.price.may
+                          ).toFixed(2)}
+                          %
+                        </span>
                       </div>
                       <Link to='/' className='notification-link'>
                         Trade now

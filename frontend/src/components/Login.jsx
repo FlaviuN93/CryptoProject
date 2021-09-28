@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { UserContext } from '../providers/user.provider';
 import FormInput from './SharedComponents/FormInput';
-import ErrorModal from './SharedComponents/ErrorModal';
 import LoadingSpinner from './SharedComponents/LoadingSpinner';
 import ErrorModal2 from './SharedComponents/ErrorModal2';
 import { StatesContext } from '../providers/states.provider';
@@ -12,11 +11,12 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const { handleModal } = useContext(StatesContext);
   const { isLoading, error, loginRequest, login } = useContext(UserContext);
+  const { handleModal } = useContext(StatesContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       await loginRequest(email, password);
       login();
@@ -30,8 +30,7 @@ const Login = () => {
         <LoadingSpinner />
       ) : (
         <>
-          {/* {error ? <ErrorModal error={error} /> : null}{' '} */}
-          {error ? <ErrorModal2 error={error} /> : null}{' '}
+          {error && <ErrorModal2 error={error} />}
           <h1
             style={{
               color: '#001E6C',

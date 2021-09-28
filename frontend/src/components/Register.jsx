@@ -3,8 +3,8 @@ import { Button } from '@material-ui/core';
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../providers/user.provider';
+import ErrorModal2 from './SharedComponents/ErrorModal2';
 import FormInput from './SharedComponents/FormInput';
-import ErrorModal from './SharedComponents/ErrorModal';
 import LoadingSpinner from './SharedComponents/LoadingSpinner';
 const Register = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -31,7 +31,7 @@ const Register = () => {
         <LoadingSpinner />
       ) : (
         <>
-          {error ? <ErrorModal error={error} /> : null}
+          {error ? <ErrorModal2 error={error} /> : null}
           <h1
             style={{ color: '#001E6C', textAlign: 'center', marginTop: '30px' }}
           >

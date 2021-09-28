@@ -29,7 +29,6 @@ app.use(morgan('dev'));
 app.use('/api/v1/crypto', cryptoRouter);
 app.use('/api/v1/users', userRouter);
 app.use((req, res, next) => {
-  console.log(req.cookies);
   next();
 });
 

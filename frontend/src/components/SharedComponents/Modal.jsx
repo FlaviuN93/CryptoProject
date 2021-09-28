@@ -5,7 +5,7 @@ import Backdrop from './Backdrop';
 import { CSSTransition } from 'react-transition-group';
 
 const ModalOverlay = (props) => {
-  const content = props.show && (
+  const content = (
     <div className={`modal ${props.className}`}>
       <header className={`modal-header ${props.headerClass}`}>
         {props.header}
@@ -25,7 +25,13 @@ const Modal = (props) => {
       {props.show && (
         <Backdrop className={props.backdropCSS} onClick={props.onCancel} />
       )}
-      <CSSTransition in={props.show} timeout={300} classNames='modal-animation'>
+      <CSSTransition
+        in={props.show}
+        timeout={{ exit: 300, appear: 500, enter: 300 }}
+        appear={props.show}
+        classNames='modal-animation'
+        unmountOnExit
+      >
         <ModalOverlay {...props} />
       </CSSTransition>
     </React.Fragment>

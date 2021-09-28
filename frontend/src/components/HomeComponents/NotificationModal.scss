@@ -1,13 +1,8 @@
 .notification-modal {
   width: 381px;
   height: 489px;
-  background: linear-gradient(
-    190.57deg,
-    rgba(255, 255, 255, 0.56) 19.25%,
-    rgba(248, 248, 255, 0.71) 54.39%,
-    rgba(255, 255, 255, 0.59) 90.02%
-  );
-  border: 0.92px solid;
+  background-color: rgba(white, $alpha: 0.9);
+  border: 1px solid whitesmoke;
   border-image-source: linear-gradient(
     62.65deg,
     rgba(237, 237, 237, 0.49) 15.08%,
@@ -112,6 +107,19 @@
           transform: translateY(-1px);
         }
       }
+
+      .up-arrow + .notification-percentage {
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 500;
+        color: #2bb596;
+      }
+      .down-arrow + .notification-percentage {
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 500;
+        color: #e3507a;
+      }
     }
   }
 }
@@ -153,13 +161,12 @@
 }
 
 .notification-backdrop {
-  height: 120vh;
+  height: 150vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: whitesmoke;
-  opacity: 0.5;
-  cursor: pointer;
-  z-index: 5;
+  background-color: white;
+  opacity: 0.1;
+  z-index: 1;
 }
