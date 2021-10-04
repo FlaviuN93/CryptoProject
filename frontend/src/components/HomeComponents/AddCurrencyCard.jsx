@@ -26,15 +26,9 @@ const useStyles = makeStyles((theme) => ({
 const AddCurrencyCard = () => {
   const [visible, setVisible] = useState(false);
   const [values, setValues] = useState([]);
-  const {
-    isLoading,
-    error,
-    cryptos,
-    trendCrypto,
-    getCryptoByName,
-    selectedCrypto,
-  } = useContext(CryptoContext);
-
+  const { isLoading, error, cryptos, getCryptoByName, selectedCrypto } =
+    useContext(CryptoContext);
+  console.log(values);
   const showModal = () => setVisible(true);
 
   const handleOk = () => {

@@ -32,20 +32,10 @@ exports.getCryptoByName = (req, res) => {
 };
 
 exports.trendCrypto = catchAsync(async (req, res) => {
-  // let timeline = 1000 * 60 * 60 * 24 * 30;
   const trendingCrypto = await CoinGeckoClient.coins.markets({
-    ids: ['bitcoin', 'ethereum', 'binancecoin', 'solana'],
+    ids: ['bitcoin', 'ethereum', 'binancecoin', 'solana', 'dogecoin'],
     price_change_percentage: '30d',
   });
-
-  const firstDate = new Date('2021.04.12').getTime() / 1000;
-  const lastDate = new Date('2021.08.12').getTime() / 1000;
-  const { data } = await CoinGeckoClient.coins.fetchMarketChartRange(
-    'bitcoin',
-
-    { from: firstDate, to: lastDate }
-  );
-  console.log(data.prices);
 
   res.status(200).json({
     status: 'success',

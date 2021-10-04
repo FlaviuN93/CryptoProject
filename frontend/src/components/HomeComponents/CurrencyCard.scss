@@ -16,32 +16,38 @@
     padding: 2px 10px;
 
     .currency-card-icon {
-      flex: 1;
       align-self: center;
       margin-right: 15px;
     }
     .currency-card-info {
-      flex: 4;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 25px 25px;
+      grid-template-rows: 22px 28px;
       align-items: center;
-      justify-items: center;
+      margin-left: 10px;
       .currency-card-price {
         font-size: 16px;
         line-height: 18px;
         color: #4c4c66;
         opacity: 0.7;
+        justify-self: end;
       }
       .currency-card-name {
-        font-size: 11.5px;
+        font-size: 11px;
         line-height: 13.5px;
         font-weight: 700;
         color: #4c4c66;
+        justify-self: center;
+        margin-left: 10px;
         opacity: 0.3;
       }
     }
-
+    #arrow {
+      width: 6px;
+      height: 6px;
+      margin-right: 3px;
+      margin-block-end: 3px;
+    }
     .up-arrow + .currency-card-percentage {
       font-size: 10.5px;
       line-height: 12px;
@@ -53,12 +59,53 @@
       color: #e3507a;
     }
   }
+  @media only screen and (max-width: 68.75em) {
+    &-container {
+      padding: 2px 3px;
+    }
+    .currency-card-icon {
+      margin-right: 12px;
+    }
+    .currency-card-info {
+      margin-left: 5px;
+      .currency-card-price {
+        font-size: 13px;
+        line-height: 15px;
+      }
+    }
+  }
+  @media only screen and (max-width: 50em) {
+    .currency-card-info {
+      grid-template-columns: 40px 50px;
+      grid-template-rows: 25px 25px;
+      margin-left: 5px;
+      .currency-card-price {
+        font-size: 11px;
+        line-height: 13px;
+      }
+      .currency-card-name {
+        font-size: 10px;
+        line-height: 11.5px;
+        margin-left: 5px;
+      }
+      .up-arrow + .currency-card-percentage {
+        font-size: 9px;
+        line-height: 10px;
+        color: #2bb596;
+      }
+      .down-arrow + .currency-card-percentage {
+        font-size: 9px;
+        line-height: 10px;
+        color: #e3507a;
+      }
+    }
+  }
+  @media only screen and (max-width: 40em) {
+    .currency-card-info {
+      margin-left: 0;
+    }
+    #arrow {
+      margin-right: 1px;
+    }
+  }
 }
-// .currency-card-active {
-//   background-color: #53b9ea;
-//   color: white;
-
-//   .currency-short {
-//     color: #f3f1f5;
-//   }
-// }

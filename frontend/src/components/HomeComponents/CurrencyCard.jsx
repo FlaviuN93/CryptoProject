@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useMediaQuery } from '@material-ui/core';
 import { calculatePercent } from '../../utils/cryptoFunctions';
 import SmallLineChart from '../SharedComponents/SmallLineChart';
+
 import './CurrencyCard.scss';
 
 const CurrencyCard = (props) => {
   const { icon, short, price } = props.crypto;
   const [selectCard, setSelectCard] = useState(false);
-  const percentageResult = calculatePercent(price.june, price.may);
-  console.log(percentageResult);
+  const percentageResult = calculatePercent(price.july, price.june);
+  const isTablet = useMediaQuery('(max-width:50em)');
   const handleClick = () => setSelectCard(!selectCard);
-
   return (
     <>
       <div
@@ -28,12 +29,24 @@ const CurrencyCard = (props) => {
           <div className='currency-card-info'>
             <div className='currency-card-price'>{price.july}$</div>
             <div className='currency-card-name'>{short}</div>
-            <SmallLineChart
-              crypto={props.crypto}
-              margin={'2 0 0 5'}
-              backgroundColor={'rgba(255, 246, 240, 0.7)'}
-              pricePercentage={percentageResult}
-            />
+
+            {isTablet ? (
+              <SmallLineChart
+                width={32}
+                height={16}
+                crypto={props.crypto}
+                backgroundColor={'rgba(255, 246, 240, 0.7)'}
+                pricePercentage={percentageResult}
+              />
+            ) : (
+              <SmallLineChart
+                width={42}
+                height={20}
+                crypto={props.crypto}
+                backgroundColor={'rgba(255, 246, 240, 0.7)'}
+                pricePercentage={percentageResult}
+              />
+            )}
 
             <div>
               {percentageResult > 0 ? (
@@ -41,24 +54,14 @@ const CurrencyCard = (props) => {
                   className='up-arrow'
                   src='images/icons/UpArrow@x3.png'
                   alt='up-arrow'
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    marginRight: '3px',
-                    marginBlockEnd: '3px',
-                  }}
+                  id='arrow'
                 />
               ) : (
                 <img
                   className='down-arrow'
                   src='images/icons/DownArrow@x3.png'
                   alt='down-arrow'
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    marginRight: '3px',
-                    marginBlockEnd: '3px',
-                  }}
+                  id='arrow'
                 />
               )}{' '}
               <span className='currency-card-percentage'>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'zingchart/es6';
 import ZingChart from 'zingchart-react';
+import './SmallLineChart.scss';
 
 const SmallLineChart = (props) => {
   const [data, setData] = useState({});
@@ -28,11 +29,9 @@ const SmallLineChart = (props) => {
       plot: {
         highlight: true,
         'tooltip-text': '%t views: %v<br>%k',
-        shadow: 0,
-        'line-width': 4,
-        marker: {
-          type: 'none',
-        },
+
+        'line-width': 3,
+        marker: { type: 'none' },
         animation: {
           effect: 2,
           sequence: 1,
@@ -60,13 +59,7 @@ const SmallLineChart = (props) => {
     props.backgroundColor,
   ]);
 
-  return (
-    <ZingChart
-      data={data}
-      width={props.width || 45}
-      height={props.height || 20}
-    />
-  );
+  return <ZingChart data={data} width={props.width} height={props.height} />;
 };
 
 export default SmallLineChart;

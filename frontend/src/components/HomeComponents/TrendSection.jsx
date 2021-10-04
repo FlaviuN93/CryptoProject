@@ -7,7 +7,7 @@ const TrendSection = () => {
   const { cryptos } = useContext(CryptoContext);
 
   return (
-    <>
+    <div>
       <h3 className='trend-title'>Trend</h3>
       <div className='trend-container'>
         {cryptos.map(
@@ -84,7 +84,7 @@ const TrendSection = () => {
             )
         )}
       </div>
-    </>
+    </div>
   );
 };
 export default TrendSection;

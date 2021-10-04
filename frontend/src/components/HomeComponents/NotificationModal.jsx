@@ -65,37 +65,50 @@ const NotificationModal = () => {
                           )}
                         />
 
-                        {calculatePercent(crypto.price.june, crypto.price.may) >
-                        0 ? (
-                          <img
-                            className='up-arrow'
-                            src='images/icons/UpArrow@x3.png'
-                            alt='up-arrow'
-                            style={{
-                              width: '6px',
-                              height: '6px',
-                              marginRight: '6.5px',
-                            }}
-                          />
-                        ) : (
-                          <img
-                            className='down-arrow'
-                            src='images/icons/DownArrow@x3.png'
-                            alt='down-arrow'
-                            style={{
-                              width: '6px',
-                              height: '6px',
-                              marginRight: '6.5px',
-                            }}
-                          />
-                        )}
-                        <span className='notification-percentage'>
+                        <div style={{ marginLeft: '15px' }}>
                           {calculatePercent(
                             crypto.price.june,
                             crypto.price.may
-                          ).toFixed(2)}
-                          %
-                        </span>
+                          ) > 0 ? (
+                            <img
+                              className='up-arrow'
+                              src='images/icons/UpArrow@x3.png'
+                              alt='up-arrow'
+                              style={{
+                                width: '6px',
+                                height: '6px',
+                                marginRight: '6.5px',
+                              }}
+                            />
+                          ) : (
+                            <img
+                              className='down-arrow'
+                              src='images/icons/DownArrow@x3.png'
+                              alt='down-arrow'
+                              style={{
+                                width: '6px',
+                                height: '6px',
+                                marginRight: '6.5px',
+                              }}
+                            />
+                          )}
+                          <span className='notification-percentage'>
+                            {calculatePercent(
+                              crypto.price.june,
+                              crypto.price.may
+                            ) > 0
+                              ? '+' +
+                                calculatePercent(
+                                  crypto.price.june,
+                                  crypto.price.may
+                                ).toFixed(2)
+                              : calculatePercent(
+                                  crypto.price.june,
+                                  crypto.price.may
+                                ).toFixed(2)}
+                            %
+                          </span>
+                        </div>
                       </div>
                       <Link to='/' className='notification-link'>
                         Trade now

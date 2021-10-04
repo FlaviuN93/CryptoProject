@@ -7,6 +7,7 @@ import MainChart from '../components/SharedComponents/MainChart';
 import ResponsiveHomeSidebar from '../components/HomeComponents/ResponsiveHomeSidebar';
 import HomeSidebar from '../components/HomeComponents/HomeSidebar';
 import TrendSection from '../components/HomeComponents/TrendSection';
+import HistorySection from '../components/HomeComponents/HistorySection';
 
 const useStyles = makeStyles((theme) => ({
   tabletContainer: {
@@ -23,9 +24,25 @@ const useStyles = makeStyles((theme) => ({
   desktopContainer: {
     display: 'grid',
     gridTemplateColumns: '273px 1fr',
+
     height: '100vh',
+    gridRowGap: '5rem',
     [theme.breakpoints.down('md')]: {
       gridTemplateColumns: '233px 1fr',
+    },
+  },
+  trendHistoryContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    [theme.breakpoints.down('lg')]: {
+      marginLeft: '125px',
+    },
+    [theme.breakpoints.down('md')]: {
+      marginTop: '40px',
+      marginLeft: '0',
     },
   },
 }));
@@ -41,7 +58,10 @@ const HomePage = () => {
             <Header />
             <AddCurrencyCard />
             <MainChart />
-            <TrendSection />
+            <div className={classes.trendHistoryContainer}>
+              <TrendSection />
+              <HistorySection />
+            </div>
           </div>
         </div>
       ) : (
@@ -49,10 +69,14 @@ const HomePage = () => {
           <HomeSidebar />
           <div style={{ marginLeft: '55px' }}>
             <Header />
-
             <AddCurrencyCard />
             <MainChart />
-            <TrendSection />
+            <div className={classes.trendHistoryContainer}>
+              <TrendSection />
+              <div className={classes.margin}>
+                <HistorySection />
+              </div>
+            </div>
           </div>
         </div>
       )}

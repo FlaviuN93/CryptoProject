@@ -10,8 +10,8 @@
       "march": 4860,
       "april": 5750,
       "may": 3520,
-      "june": 3740,
-      "july": 3210
+      "june": 4332,
+      "july": 3210.88
     },
     "color": "#C36839"
   },
@@ -26,8 +26,8 @@
       "march": 3210,
       "april": 4010,
       "may": 2990,
-      "june": 3212,
-      "july": 3432
+      "june": 5421,
+      "july": 3432.12
     },
     "color": "#50CB93"
   },
@@ -42,8 +42,8 @@
       "march": 1790,
       "april": 2450,
       "may": 3900,
-      "june": 4500,
-      "july": 4905
+      "june": 3264,
+      "july": 3102.65
     },
     "color": "#297F87"
   },
@@ -59,7 +59,7 @@
       "april": 525,
       "may": 610,
       "june": 340,
-      "july": 290
+      "july": 290.32
     },
     "color": "#FFC947"
   },
@@ -75,7 +75,7 @@
       "april": 210,
       "may": 240,
       "june": 280,
-      "july": 110
+      "july": 110.52
     },
     "color": "#3D087B"
   },
@@ -91,7 +91,7 @@
       "april": 42,
       "may": 48,
       "june": 14,
-      "july": 13
+      "july": 13.43
     },
     "color": "#FF449F"
   },
@@ -107,7 +107,7 @@
       "april": 197,
       "may": 386,
       "june": 168,
-      "july": 196
+      "july": 196.65
     },
     "color": "#035397"
   },
@@ -118,12 +118,12 @@
     "icon": "/images/icons/usdt.png",
     "price": {
       "january": 1,
-      "february": 1,
-      "march": 1,
-      "april": 1,
-      "may": 1,
-      "june": 1,
-      "july": 1
+      "february": 0.9,
+      "march": 1.1,
+      "april": 1.2,
+      "may": 1.5,
+      "june": 3.2,
+      "july": 1.24
     },
     "color": "#FAAD80"
   },
@@ -138,8 +138,8 @@
       "march": 53,
       "april": 129,
       "may": 170,
-      "june": 86,
-      "july": 62
+      "june": 142,
+      "july": 62.21
     },
     "color": "#7D1935"
   }

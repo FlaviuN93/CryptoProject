@@ -1,6 +1,6 @@
 .notification-modal {
   width: 381px;
-  height: 489px;
+  height: 500px;
   background-color: rgba(white, $alpha: 0.9);
   border: 1px solid whitesmoke;
   border-image-source: linear-gradient(
@@ -29,7 +29,7 @@
   .notification-footer {
     text-align: center;
     transition: all 0.2s ease-in;
-    transform: translatey(0);
+    transform: translateY(0);
     &-link {
       font-size: 12px;
       color: rgba($color: #3279cc, $alpha: 0.75);

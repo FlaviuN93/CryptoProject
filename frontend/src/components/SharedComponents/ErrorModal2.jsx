@@ -1,14 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Modal from '../SharedComponents/Modal';
 import { Button } from '@material-ui/core';
 import { IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import './ErrorModal2.scss';
-import { StatesContext } from '../../providers/states.provider';
 const ErrorModal2 = ({ error }) => {
   const [close, setClose] = useState(true);
   const handleClose = () => setClose(!close);
-  // const { toggleModal, handleModal } = useContext(StatesContext);
   return (
     <Modal
       show={close}
