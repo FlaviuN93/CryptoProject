@@ -9,8 +9,9 @@ export const useHttpClient = () => {
       try {
         setIsLoading(true);
         const response = await fetch(url, { method, headers, body });
-
         const data = await response.json();
+
+        console.log('333333', data);
         if (!response.ok) {
           setError(data);
           setIsLoading(false);

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import './Header.scss';
-import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';

@@ -10,16 +10,28 @@ export const UserContext = createContext({
   isLoading: false,
 });
 
+let logoutTimer;
 const userFromLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {};
 
 const UserProvider = ({ children }) => {
   let { isLoading, error, sendRequest } = useHttpClient();
   const [userInfo, setUserInfo] = useState(userFromLocalStorage);
+  const [tokenDate, setTokenDate] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  const login = useCallback(() => {
+  const login = useCallback((user, token, expirationDate) => {
     setIsLoggedIn(true);
+    const tokenExpiration =
+      expirationDate ||
+      new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 3);
+    setUserInfo({
+      user: user,
+      token: token,
+      expirationDate: tokenExpiration.toISOString(),
+    });
+    setTokenDate(tokenExpiration);
   }, []);
+
   const logout = useCallback(() => {
     setIsLoggedIn(false);
     localStorage.removeItem('userInfo');
@@ -27,7 +39,29 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
-  }, [userInfo]);
+    if (
+      !isLoggedIn &&
+      userFromLocalStorage &&
+      userFromLocalStorage.user &&
+      userFromLocalStorage.token &&
+      new Date(userFromLocalStorage.expirationDate) > new Date()
+    ) {
+      login(
+        userFromLocalStorage.user,
+        userFromLocalStorage.token,
+        new Date(userFromLocalStorage.expirationDate)
+      );
+    }
+  }, [login, userInfo, isLoggedIn]);
+
+  useEffect(() => {
+    if (userInfo.token && tokenDate) {
+      const remainingTime = tokenDate.getTime() - new Date().getTime();
+      logoutTimer = setTimeout(logout, remainingTime);
+    } else {
+      clearTimeout(logoutTimer);
+    }
+  }, [userInfo.token, logout, tokenDate]);
 
   const signupRequest = async ({ name, email, password, confirmPassword }) => {
     const response = await sendRequest(
@@ -49,8 +83,7 @@ const UserProvider = ({ children }) => {
     );
 
     const { data, token } = response;
-
-    setUserInfo({ user: data.user, token });
+    login(data.user, token);
   };
 
   return (

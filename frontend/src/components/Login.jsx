@@ -5,21 +5,19 @@ import { UserContext } from '../providers/user.provider';
 import FormInput from './SharedComponents/FormInput';
 import LoadingSpinner from './SharedComponents/LoadingSpinner';
 import ErrorModal2 from './SharedComponents/ErrorModal2';
-import { StatesContext } from '../providers/states.provider';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
-  const { isLoading, error, loginRequest, login } = useContext(UserContext);
-  const { handleModal } = useContext(StatesContext);
+  const { isLoading, error, loginRequest } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       await loginRequest(email, password);
-      login();
+
       history.push('/');
     } catch (err) {}
   };

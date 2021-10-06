@@ -22,7 +22,7 @@ const ModalOverlay = (props) => {
 const Modal = (props) => {
   return (
     <React.Fragment>
-      {props.show && (
+      {props.showBackdrop && (
         <Backdrop className={props.backdropCSS} onClick={props.onCancel} />
       )}
       <CSSTransition

@@ -1,13 +1,29 @@
 // import React, { useState, createContext, useEffect, useCallback } from 'react';
 
-// import { useHttpClient } from '../shared/http-hook';
+// import { useHttpClient } from '../shared/hooks/http-hook';
 
-// export const ProfileContext = createContext({});
+// export const UserContext = createContext({
+//   login: () => {},
+//   logout: () => {},
+//   signupRequest: () => {},
+//   loginRequest: () => {},
+//   isLoading: false,
+// });
 
-// const ProfileProvider = ({ children }) => {
-//   const { isLoading, error, sendRequest } = useHttpClient();
-//   const [userInfo, setUserInfo] = useState();
+// const userFromLocalStorage = JSON.parse(localStorage.getItem('userInfo')) || {};
+
+// const UserProvider = ({ children }) => {
+//   let { isLoading, error, sendRequest } = useHttpClient();
+//   const [userInfo, setUserInfo] = useState(userFromLocalStorage);
 //   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+//   const login = useCallback(() => {
+//     setIsLoggedIn(true);
+//   }, []);
+//   const logout = useCallback(() => {
+//     setIsLoggedIn(false);
+//     localStorage.removeItem('userInfo');
+//   }, []);
 
 //   useEffect(() => {
 //     localStorage.setItem('userInfo', JSON.stringify(userInfo));
@@ -38,19 +54,21 @@
 //   };
 
 //   return (
-//     <ProfileContext.Provider
+//     <UserContext.Provider
 //       value={{
 //         signupRequest,
 //         loginRequest,
+//         login,
 //         isLoggedIn,
+//         logout,
 //         isLoading,
 //         error,
 //         userInfo,
 //       }}
 //     >
 //       {children}
-//     </ProfileContext.Provider>
+//     </UserContext.Provider>
 //   );
 // };
 
-// export default ProfileProvider;
+// export default UserProvider;

@@ -9,14 +9,12 @@ import SmallLineChart from '../SharedComponents/SmallLineChart';
 import { calculatePercent } from '../../utils/cryptoFunctions';
 const NotificationModal = () => {
   const { cryptos } = useContext(CryptoContext);
-  const { toggleModal, handleModal } = useContext(StatesContext);
+  const { toggleModal } = useContext(StatesContext);
 
   return (
     <>
       <Modal
         show={toggleModal}
-        onCancel={handleModal}
-        backdropCSS='notification-backdrop'
         header={<h3 className='notification-header'>Notifications</h3>}
         footer={
           <Link to='/notifications' className='notification-footer-link'>
