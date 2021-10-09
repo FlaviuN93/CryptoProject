@@ -18,7 +18,7 @@ const SearchBar = () => {
       <CSSTransition
         in={searchToggle}
         timeout={{ exit: 500, enter: 300 }}
-        classNames='transition'
+        classNames='search-transition'
       >
         <div>
           {searchToggle ? (

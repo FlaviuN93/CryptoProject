@@ -6,7 +6,6 @@ export const StatesContext = createContext({
   handlePopup: () => {},
   handleModal: () => {},
 });
-let rootElem = document.getElementById('root');
 
 const StatesProvider = ({ children }) => {
   const [toggleModal, setToggleModal] = useState(false);
@@ -19,12 +18,13 @@ const StatesProvider = ({ children }) => {
     () => setToggleModal(!toggleModal),
     [toggleModal]
   );
-  // console.log(toggleModal);
+
   useEffect(() => {
+    let rootElem = document.getElementById('root');
     if (toggleModal === true)
       // if I don't remove the event after addEvent the modal doesn't work properly
       // but why doesn't it work without a function returned
-      rootElem.addEventListener('click', handleModal, false);
+      rootElem.addEventListener('click', handleModal);
     return () => rootElem.removeEventListener('click', handleModal);
   }, [toggleModal, handleModal]);
 
