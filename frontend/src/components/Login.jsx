@@ -12,14 +12,10 @@ const Login = () => {
   const history = useHistory();
   const { isLoading, error, loginRequest } = useContext(UserContext);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    try {
-      await loginRequest(email, password);
-
-      history.push('/');
-    } catch (err) {}
+    loginRequest(email, password);
+    history.push('/');
   };
 
   return (

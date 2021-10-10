@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router';
 
 import { useHttpClient } from '../shared/hooks/http-hook';
 
@@ -24,16 +25,17 @@ const UserProvider = ({ children }) => {
     const tokenExpiration =
       expirationDate ||
       new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 3);
+    setTokenDate(tokenExpiration);
     setUserInfo({
       user: user,
       token: token,
       expirationDate: tokenExpiration.toISOString(),
     });
-    setTokenDate(tokenExpiration);
   }, []);
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
+    setTokenDate(null);
     localStorage.removeItem('userInfo');
   }, []);
 
@@ -72,7 +74,7 @@ const UserProvider = ({ children }) => {
     );
     const { data, token } = response;
 
-    setUserInfo({ user: data.user, token });
+    login(data.user, token);
   };
   const loginRequest = async (email, password) => {
     const response = await sendRequest(

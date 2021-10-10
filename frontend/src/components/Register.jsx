@@ -17,12 +17,10 @@ const Register = () => {
 
   const { isLoading, error, signupRequest } = useContext(UserContext);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    try {
-      await signupRequest(userCredentials);
-      history.push('/');
-    } catch (err) {}
+    signupRequest(userCredentials);
+    history.push('/');
   };
 
   return (
